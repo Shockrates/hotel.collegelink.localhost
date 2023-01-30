@@ -1,0 +1,318 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+}
+
+.container{
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+
+
+body > header {
+    
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 99999;
+}
+
+
+  .header-content {
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        color: black;
+        font-weight: 400;
+        width: 100%;
+        box-shadow: 0px 4px 1px 2px rgba(0, 0, 0, 0.25);
+    }
+        .main-logo{
+            font-size: 18px;
+            display: flex;
+            width: 30%;
+            align-items: center;
+            justify-content: center;
+        
+        }
+
+        .main-navigation {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style-type: none;
+            width: 70%;
+            justify-content: end;
+
+          
+        }
+
+        li {
+            display: inline;
+            padding: 10px;
+           
+        }
+
+        li.main-navigation__home{
+            
+           
+            border-right: 1px dotted rgb(211, 204, 204);
+
+        }
+
+        li a {
+            color: rgb(73, 67, 67);  
+            font-size: 14px; 
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 200;
+            text-decoration: none;
+         
+        }
+
+        li a:hover {
+            color: #ff5500;
+        }
+    body > main {
+        margin: 155px auto 0 auto;
+        /* height: 100%; */
+        flex: 1 0 auto;
+    }
+        .room{
+            display: block;
+            width: 100%;
+        }
+
+            .room-details{
+                /* width: 100%; */
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #ff5500;
+                border-radius: 4px;
+                margin-bottom: 15px;
+                padding: 0 10px;
+                color: #fff;
+                font-weight: 300;
+            }
+
+            .room-details-left{
+                display: flex;
+                align-items:center;
+                justify-content: flex-start;
+                margin: 10px 0;
+            }
+
+            .room-details-left div{
+                margin-right: 5px;
+            }
+            .rating-reviews {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 5px;
+                border-right: 2px solid rgb(211, 204, 204);
+                border-left: 2px solid rgb(211, 204, 204);
+                
+            }
+                .star-reviews{
+                    margin: auto;
+                    padding: 2px;
+                }
+                .star-reviews li {
+                    display: inline;
+                    padding: 1px 1px;
+                
+                }
+
+            .favorite i{
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+            .favorite i:hover{
+                color:#f1c707;
+                transform: scale(1.3);
+            }
+
+            .is-favorite{
+                color:#f1c707;
+                transform: scale(1.3);
+            }
+
+        .room-image{
+            width: 60%; 
+            height: auto;
+            margin: 5px 0;
+        }
+
+            .room-data{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 5px 5px;
+                border-right: 2px dashed #ff5500;;
+            }
+
+            .room-data:last-child{
+                border: none;
+            }
+
+
+            .room-data i{
+                font-size: 20px;
+                font-style: normal;
+            }
+
+            .room-data p{
+                margin: 0 0 5px 0;
+                font-size: 14px;
+            }
+
+            .room-data p:first-child{
+                font-size: 1.5em;
+                font-style: normal;
+                margin: 0;
+            }
+
+            .border-left{
+                padding: 0 15px;
+                margin: 15px 0 30px 0;
+                border-left: 2px solid #ff5500;
+
+            }
+
+    iframe{
+        width: 100%;
+        height: 30vh;
+    }
+    .room-review-list{
+        height: auto;
+        max-height: 250px;
+        overflow: auto;
+    }
+        
+        .user-rating  {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .user-rating  p {
+            margin-right: 5px;;
+        }
+        .time-added p{
+            margin: 0;
+            font-size: 14px;
+        }
+
+           
+
+
+            
+
+/* STAR RATING SECTION */
+/*set the default color of the stars*/
+
+.star-rating{
+    width: 100%;
+    color: #bebebe;
+    font-size:2em;
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    float: left;
+    margin-bottom: 5px;
+}
+.my-star{
+    margin-right: 5px;
+    transition: all 0.2s;
+    font-size: 20px;
+}
+
+
+.star-rating:not(:checked) > input {
+    display: none;
+}
+
+/*set active star color*/
+.is-active{
+    color:#f1c707;
+    transform: scale(1.3);
+}
+
+/*when an element is selected and pointer re-enters the rating container, selected rate and siblings get semi transparent, as reminder of current selection*/
+.star-rating:hover > .my-star.is-active{ 
+    color: #bebebe;
+    transform: scale(1.0);
+}
+
+/*set color on hover*/
+.star-rating > .my-star:not(.is-active):hover,
+.star-rating > .my-star:not(.is-active):hover ~ .my-star:not(.is-active),
+.star-rating > .my-star.is-active:hover,
+.star-rating > .my-star:not(.is-active):hover ~ .my-star.is-active,
+.star-rating > .my-star.is-active:hover ~ .my-star.is-active{ 
+    color: #fb8900;
+    transform: scale(1.3);
+
+}
+
+
+.user-review{
+    width: 100%;
+    height: auto;
+    padding-right: 20px;
+ 
+}
+
+.user-review textarea{
+    width: 100%;
+    resize: vertical;
+    overflow: auto;
+}
+
+.action{
+    margin: 10px 0;
+    text-align: center;
+
+}
+
+    input[type="submit"] {
+        border: none;
+        padding:15px;
+        font-size: 16px;
+        line-height: 16px;
+        font-family: 'Roboto';
+        border-radius: 3px;
+        background: rgb(250, 73, 3);
+        background-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+/* https://codepen.io/facundocorradini/pen/MQmoLR */
+
+
+
+
+

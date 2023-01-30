@@ -1,0 +1,234 @@
+@keyframes slideInDown {
+    0% {
+      transform: translateY(30%);
+      opacity: 0;
+        
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      
+      opacity: 0;
+        
+    }
+    100% {
+      
+      opacity: 1;
+    }
+}
+
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+body > header {
+    box-shadow: 0px 4px 1px 2px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    background-color: rgb(253, 251, 251);
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99999;
+    font-weight: 400;
+}
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        width: 60%;
+        color: black;
+    }
+        .header-logo{
+            font-size: 18px;
+            /* font-weight: bold; */
+        }
+
+        .header-navigation {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style-type: none;
+
+            /* white-space: nowrap; */
+        }
+
+        li {
+            display: inline;
+            padding: 10px;
+           
+        }
+
+        li.main-navigation_home{
+            /* padding: 0 10px; */
+            margin: 0px 10px;
+            border-right: 1px inset rgb(211, 204, 204);
+
+        }
+
+        li a {
+            color: rgb(73, 67, 67); 
+            font-size: 14px; 
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 200;
+            text-decoration: none;
+         
+        }
+
+        li a:hover {
+            color: #ff5500;
+        }
+
+body > main {
+    margin: 61px 0 0 0;
+    flex: 1 0 auto;
+
+    background: url("assets/images/michelangelo-hotels-2.jpg") ;
+    /* Full height */
+    /* height: 100%;  */
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 155px 0 300px 0; 
+    animation: 0.5s ease-out 0s 1 fadeIn;
+}
+    section.main-content{
+        width: 100%;
+    }
+   
+
+    section.main-content form {
+        background: #fff;
+        width: 30%;
+        max-width: 680px;
+        margin: 0 auto;
+        /* box-sizing: border-box; */
+        padding: 10px 20px;
+        border-radius: 12px;
+        transition: 0.3s;
+        animation: 1s ease-out 0s 1 slideInDown;
+    }
+
+    section.main-content form fieldset {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: none ;
+    }
+
+    section.main-content form .form-group{
+        width:50%;
+        margin: 0 5px;
+    }
+
+        section.main-content form select,
+        section.main-content form input[type="text"],
+        section.main-content form input[type="date"] {
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            line-height: 50px;
+            text-align: center;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        } 
+        
+        
+        section.main-content form select{
+            background-color: #e0dddd;
+            text-align-last: center;
+
+        }
+            section.main-content form option {
+                text-align: left;
+            }
+
+       
+
+    section.main-content form .action{
+        margin: 10px 0;
+        text-align: center;
+
+    }
+
+        section.main-content form input[type="submit"] {
+            border: none;
+            padding:15px;
+            font-size: 16px;
+            line-height: 16px;
+            font-family: 'Roboto';
+            border-radius: 3px;
+            /* background: url('assets/images/icons/user.png') no-repeat left 15px center rgb(250, 73, 3); */
+            background: rgb(250, 73, 3);
+            background-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        section.main-content form input[type="submit"]:hover {
+            background: rgb(182, 52, 0);;
+            
+        }
+
+
+body > footer {
+background: #ccc;
+border-top: 3px solid #808080;
+flex-shrink: 0;
+}
+    body > footer p {
+        color: #616161;
+        font-size: 13px;
+        text-align: center;
+        margin: 0;
+        padding: 25px 0;
+        
+    }
+
+@media (max-width: 1004px) {
+    .container {
+        width: 804px;
+    }
+    section.main-content {
+        background-size: cover;
+    }
+    section.main-content form {
+        width: 40%;
+    }
+}
+
+        
+        
