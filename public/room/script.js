@@ -51,3 +51,15 @@ document.addEventListener('DOMContentLoaded', function(){
     })();//end of function
 
 })
+
+//Used to submit logoutform with a tag
+function submit() {
+    let form = document.getElementById("logoutForm");
+    form.submit();  
+}
+
+function submitFavorite() {
+    let form = document.getElementById("favorite");
+    form.submit();  
+}
+

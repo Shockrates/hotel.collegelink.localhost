@@ -10,9 +10,9 @@ class Room extends BaseService
 {
    
     public function get($roomId){
-         //Create Parameters TABLE
-         $parameters = [
-            ':room_id' => $roomId,
+        //Create Parameters TABLE
+        $parameters = [
+        ':room_id' => $roomId,
         ];
         //Create SQL query  
         $sql = 'SELECT * FROM room WHERE room_id = :room_id';

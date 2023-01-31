@@ -22,13 +22,33 @@ class Favorite extends BaseService
 
     }
 
-    public function setFavorite()
+    public function setFavorite($roomId, $userId)
     {
+          //Create Parameters TABLE
+          $parameters = [
+            ':userId' =>  $userId,
+            ':roomId' => $roomId,  
+        ];
+        //Create SQL query  
+        $sql = 'INSERT IGNORE INTO favorite (user_id, room_id) VALUES (:userId, :roomId)';
 
+        $rows = $this->fetch($sql, $parameters);
+        // Check if the record has been inserted
+        return $rows == 1;
     }
 
-    public function unSetFavorite()
+    public function unSetFavorite($roomId, $userId)
     {
-        
+           //Create Parameters TABLE
+           $parameters = [
+            ':userId' =>  $userId,
+            ':roomId' => $roomId,  
+        ];
+        //Create SQL query  
+        $sql = 'DELETE FROM favorite WHERE user_id = :userId AND room_id = :roomId';
+
+        $rows = $this->fetch($sql, $parameters);
+        // Check if the record has been inserted
+        return $rows == 1;
     }
 }

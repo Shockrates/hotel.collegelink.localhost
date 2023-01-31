@@ -4,23 +4,27 @@
     use Hotel\User;
     use Hotel\Room;
     use Hotel\Favorite;
+    use Hotel\Review;
 
 
     //Initialize Room and Favorite service
     $room = new Room();
     $favorite = new Favorite();
+    $review = new Review();
   
 
     //Check for Room id
     $roomId = $_REQUEST['room_id'];
     if (empty($roomId)) {
         header('Location: ../index.php');
+        return;
     }
 
     //Load Romm info or redirect
     $roomInfo = $room->get($roomId);
     if (empty($roomInfo)) {
         header('Location: ../index.php');
+        return;
     }
 
     //Get current User id
@@ -28,7 +32,10 @@
   
     // Check if Favorite
     $isFavorite = $favorite->isFavorite($roomId, $userId);
-    //var_dump($isFavorite);die;
+
+    //Load all room reviews
+    $roomReviews = $review->getReviewsByRoom($roomId);
+    
 
 ?>
 
@@ -58,12 +65,43 @@
                             Home
                         </a>  
                     </li>
-                    <li>
-                        <a href="register.html">
-                            <i class="fa fa-solid fa-user"></i>
-                            Profile
-                        </a>  
-                    </li>           
+                    <?php 
+                            //Check for existing logged user
+                            if (empty(User::getCurrentUserId())){
+                          
+                        ?>
+                        <li>
+                            <a href="../register">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Register 
+                            </a>  
+                        </li> 
+                        <li>
+                            <a href="../login">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                                Login 
+                            </a>  
+                        </li> 
+                        <?php
+                            } else {
+                        ?>
+                         <li>
+                            <a href="../profile">
+                                <i class="fa-solid fa-user"></i>
+                                Profile
+                            </a>  
+                        </li>    
+                        <li>
+                            <form action="../actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
+                                <a href="#" onclick="submit();return false;">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    Logout 
+                                </a> 
+                            </form> 
+                        </li> 
+                        <?php        
+                            }
+                        ?>        
                 </ul>
             </div> 
         </div>
@@ -96,7 +134,7 @@
                             <?php
                                 $roomAvgRview = $roomInfo['avg_reviews'];
                                 for ($i=1; $i <= 5; $i++) { 
-                                   if ($roomAvgRview > $i){
+                                   if ($roomAvgRview >= $i){
                             ?>  
                               <li class="fa fa-star is-active"></li>
                             <?php 
@@ -111,10 +149,10 @@
                             </ul>
                         </div>
                         <div class="favorites">
-                            <form class="favorite" name="favorite" id="favorite" action="../actions/favorite" method="post">
+                            <form class="favorite" name="favorite" id="favorite" action="../actions/favorite.php" method="post">
                                 <input type="hidden" name="room_id" value="<?=$roomId?>">
-                                <input type="hidden" name="is_favortie" value="<?=($isFavorite) ? '1' : '0';?>">
-                                <i class="fa fa-heart <?=($isFavorite) ? 'selected' : '';?>"></i>
+                                <input type="hidden" name="is_favorite" value="<?=($isFavorite) ? '1' : '0';?>">
+                                <i class="fa fa-heart <?=($isFavorite) ? 'is-favorite' : '';?>" onclick="submitFavorite();return false;"></i>
                             </form>
                             
                         </div>
@@ -179,51 +217,43 @@
                 <!--Review List Section Start-->
                 <div class="room-review-list border-left">
                     <h3>Reviews</h3>
+                    <?php
+                        foreach ($roomReviews as $review) {
+                    ?>
                     <div class="room-user-review">
                         <div class="user-rating">
                             <p>
-                                <span>1.</span>
-                                <span>usenrame</span>
+                                <span><?=$review['review_id']?>.</span>
+                                <span><?=$review['user_name']?></span>
                             </p>
                             <div>
                                 <ul class="star-reviews">
+                                <?php
+                                    for ($i=1; $i <= 5; $i++) { 
+                                        if ($review['rate'] >= $i){
+                                ?>  
+                                <li class="fa fa-star is-active"></li>
+                                <?php 
+                                        }else{
+                                ?>
                                     <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
+                                <?php     
+                                        }                       
+                                    }
+                                ?>
                                 </ul>
                             </div>
                         </div>
-                        
-                        <div class="time-added"><p>Add time: 2018-03-27 13:20:04</p ></div>
-                        <div class="user-comment">
-                            <p>"Lorem ipsum dolor sit amet"</p>
-                        </div> 
-                    </div>
                     
-                    <div class="room-user-review">
-                        <div class="user-rating">
-                            <p>
-                                <span>1.</span>
-                                <span>usenrame</span>
-                            </p>
-                            <div>
-                                <ul class="star-reviews">
-                                    <li class="fa fa-star is-active"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="time-added"><p>Add time: 2018-03-27 13:20:04</p ></div>
+                        <div class="time-added"><p>Add time: <?=$review['created_time']?></p ></div>
                         <div class="user-comment">
-                            <p>"Lorem ipsum dolor sit amet"</p>
+                            <p><?=$review['comment']?></p>
                         </div> 
                     </div>
+                    <?php
+                        }
+                    ?>
+                  
                 </div>
                 <!--Review List Section End-->
 
