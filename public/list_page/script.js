@@ -51,4 +51,9 @@ $( function() {
     $( "#checkIn" ).datepicker({ dateFormat: 'dd-mm-yy' });
     $( "#checkOut" ).datepicker({ dateFormat: 'dd-mm-yy' });
 } );
+
+function submit() {
   
+  let form = document.getElementById("logoutForm");
+  form.submit();  
+}

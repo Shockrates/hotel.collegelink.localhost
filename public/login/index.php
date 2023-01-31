@@ -3,12 +3,15 @@
 
     use Hotel\User;
 
-    //Cehck for existing logged user
+    //Check for existing logged user
     if (!empty(User::getCurrentUserId())){
         //Return to HOME page
         header('Location: /');
         die;
     }
+
+    $invalidMessage = (isset($_COOKIE['invalid_credentials']) && $_COOKIE['invalid_credentials']) ? "Please give a valid email and password" : "" ;
+    var_dump($invalidMessage);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
-    <title>Register</title>
+    <title>Login</title>
 </head>
 <body>
     <header>
@@ -37,9 +40,9 @@
                         
                     </li>
                     <li>
-                        <a href="../login">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            Login 
+                        <a href="../register">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Register 
                         </a>  
                     </li> 
                 </ul>
@@ -48,12 +51,12 @@
     </header>
     <main class="main-content">
         <section class="hero">
-            <form method="post" action="../actions/register.php">
+            <form method="post" action="../actions/login.php">
               
 
-                <fieldset id="formRegister">
-                    <div class="form-group"> 
-                        <input type="text" id="username" name="username" placeholder="Name">
+                <fieldset id="formLogIn">  
+                    <div class="">
+                        <p><?=$invalidMessage?></p>
                     </div>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Email Address">
@@ -61,13 +64,10 @@
                     <div class="form-group"> 
                         <input type="password" id="password" name="password" placeholder="Passwors">
                     </div>
-                    <div class="form-group"> 
-                        <input type="password" id="rePassword" name="rePassword" placeholder="Repeat Password">
-                    </div>
                 </fieldset>
               
                     <div class="action">
-                        <input name="register" id="registerButton" type="submit" value="Register">
+                        <input name="login" id="loginButton" type="submit" value="Login">
                     </div>
                 
                 

@@ -118,6 +118,11 @@ body > header {
         li a:hover {
             color: #ff5500;
         }
+
+        li form{
+            display: inline;
+        }
+        
     body > main {
         margin: 155px auto 0 auto;
         /* height: 100%; */

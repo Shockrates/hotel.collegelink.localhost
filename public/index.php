@@ -1,6 +1,7 @@
 <?php
     require __DIR__.'/../boot/boot.php';
 
+    use Hotel\User;
     use Hotel\Room;
     use Hotel\RoomType;
 
@@ -25,11 +26,12 @@
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="script.js"></script>
     <script>
-        $( function() {
-            $( "#checkInDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
-            $( "#checkOutDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
-        } );
+        // $( function() {
+        //     $( "#checkInDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
+        //     $( "#checkOutDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
+        // } );
     </script>
     <title>Document</title>
 </head>
@@ -49,6 +51,11 @@
                             </a>
                             
                         </li>
+                        <?php 
+                            //Check for existing logged user
+                            if (empty(User::getCurrentUserId())){
+                          
+                        ?>
                         <li>
                             <a href="register">
                                 <i class="fa-solid fa-user-plus"></i>
@@ -56,11 +63,32 @@
                             </a>  
                         </li> 
                         <li>
-                            <a href="login.html">
+                            <a href="login">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 Login 
                             </a>  
                         </li> 
+                        <?php
+                            } else {
+                        ?>
+                         <li>
+                            <a href="profile">
+                                <i class="fa-solid fa-user"></i>
+                                Profile
+                            </a>  
+                        </li>    
+                        <li>
+                            <form action="actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
+                                <a href="#" onclick="submit();return false;">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    Logout 
+                                </a> 
+                            </form> 
+                        </li> 
+                        <?php        
+                            }
+                        ?>
+                        
                     </ul>
                 </ul>
             </div>

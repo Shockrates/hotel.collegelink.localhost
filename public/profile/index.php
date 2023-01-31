@@ -1,3 +1,11 @@
+<?php
+
+require __DIR__.'/../../boot/boot.php';
+    
+use Hotel\User;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <title>List</title>
 </head>
 <body>
@@ -23,12 +32,43 @@
                             Home
                         </a>  
                     </li>
-                    <li>
-                        <a href="../profile">
-                            <i class="fa-solid fa-user"></i>
-                            Profile
-                        </a>  
-                    </li>           
+                    <?php 
+                            //Check for existing logged user
+                            if (empty(User::getCurrentUserId())){
+                          
+                        ?>
+                        <li>
+                            <a href="../register">
+                                <i class="fa-solid fa-user-plus"></i>
+                                Register 
+                            </a>  
+                        </li> 
+                        <li>
+                            <a href="../login">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                                Login 
+                            </a>  
+                        </li> 
+                        <?php
+                            } else {
+                        ?>
+                         <li>
+                            <a href="../profile">
+                                <i class="fa-solid fa-user"></i>
+                                Profile
+                            </a>  
+                        </li>    
+                        <li>
+                            <form action="../actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
+                                <a href="#" onclick="submit();return false;">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    Logout 
+                                </a> 
+                            </form> 
+                        </li> 
+                        <?php        
+                            }
+                        ?>             
                 </ul>
             </div> 
         </div>
