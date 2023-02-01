@@ -32,9 +32,8 @@ class Favorite extends BaseService
         //Create SQL query  
         $sql = 'INSERT IGNORE INTO favorite (user_id, room_id) VALUES (:userId, :roomId)';
 
-        $rows = $this->fetch($sql, $parameters);
-        // Check if the record has been inserted
-        return $rows == 1;
+       $this->execute($sql, $parameters);
+       
     }
 
     public function unSetFavorite($roomId, $userId)
@@ -47,8 +46,7 @@ class Favorite extends BaseService
         //Create SQL query  
         $sql = 'DELETE FROM favorite WHERE user_id = :userId AND room_id = :roomId';
 
-        $rows = $this->fetch($sql, $parameters);
-        // Check if the record has been inserted
-        return $rows == 1;
+        $this->execute($sql, $parameters);
+       
     }
 }

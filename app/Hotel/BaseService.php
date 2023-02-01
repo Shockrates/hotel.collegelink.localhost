@@ -76,6 +76,24 @@ class BaseService
         return $record;
     }
 
+    protected function execute($sql, $parameters = [], $type = PDO::FETCH_ASSOC)
+    {
+        // Prepare statement
+        $statement = $this->getPdo()->prepare($sql);
+
+        //Bind parameters
+        foreach ($parameters as $key => $value) {
+            
+            $statement->bindValue($key, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+        }
+        
+        // Execute statement
+        $status = $statement->execute();
+        if (!$status) {
+            throw new \Exception($statement->erroInfo()[2]);
+         }
+    }
+
     //Get PDO 
     protected function getPdo(){
         return self::$pdo;
