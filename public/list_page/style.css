@@ -349,6 +349,7 @@ body > header {
 
                     .hotel-list__hotel__info__room{
                         margin: 25px 0 0 0;
+                        padding-left: 0 0 0 25px;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
@@ -357,9 +358,8 @@ body > header {
                             display: flex;
                             justify-content: center;
                             text-align: center;
-                            width: 20%;
+                            width: 25%;
                             border-radius: 4px;
-                            padding: 0.5em 0;
                             background-color: rgb(65, 61, 61);
                             color: #efefef;
                             
@@ -370,7 +370,6 @@ body > header {
                             background: #efeae8;
                             border-radius: 4px;
                             margin: 0 0 0 3%;
-                            /* padding: 0.5em 2.5em; */
                             width: 80%;
                             justify-content: space-between;
                         }
@@ -409,13 +408,45 @@ body > footer {
     .container {
         width: 80%;
     }
-    /* section.hotel-list {
-        width: 550px;
-    } */
-    /* iframe {
-        max-width: 100%;
+   
+}
+
+@media (max-width: 1204px) {
+    .container {
+        width: 90%;
     }
-    section.hero {
-        background-size: cover;
-    } */
-}                  
+    .room-details__text{
+        font-size: 14px;
+    }
+
+} 
+
+@media (max-width: 804px) {
+    .container {
+        flex-direction: column;
+    }
+
+    aside.hotel-search-filters{
+        position: inherit;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    section.hotel-list{
+        width: 100%;
+    }
+    
+
+}
+
+
+@media (max-height: 50vh ) {
+ 
+    select,
+    input[type = "text"],
+    input[type = "number"] {   
+        height: 25px;
+        line-height: 25px;
+    }
+
+}
+

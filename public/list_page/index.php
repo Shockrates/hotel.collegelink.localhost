@@ -240,7 +240,10 @@
                     </div>
                     <div class="hotel-list__hotel__info__room">
                         <div class="room-price">
-                            <span>Per Night: <?=$availableroom['price']?></span> 
+                            <div class="room-details__text">
+                                <span>Per Night: <?=$availableroom['price']?></span> 
+                            </div>
+                           
                         </div>
                         <div class="room-details">
                            
@@ -249,7 +252,10 @@
                                 <span>Count of Guests: <?=$availableroom['count_of_guests']?></span>
                             </div>
                             <div class="room-details__text">
-                                <span>Type pf room: <?=$availableroom['type_id']?></span>
+                                <div class="room-type">
+                                    <span>Type of room:</span><span><?=$availableroom['room_type']?></span>
+                                </div>
+                                
                             </div>
                        
                         </div>

@@ -95,7 +95,9 @@ class Room extends BaseService
         }
         
         //Create SQL query  
-        $sql = 'SELECT * FROM room WHERE ';
+        //$sql = 'SELECT * FROM room WHERE ';
+        $sql = 'SELECT room.*, room_type.title as room_type FROM room INNER JOIN room_type ON room.type_id = room_type.type_id WHERE ';
+
         if (!empty($city)) {
             $sql .= 'city = :city AND ';
         }

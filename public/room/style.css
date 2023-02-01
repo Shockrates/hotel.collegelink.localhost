@@ -161,6 +161,9 @@ body > header {
             height: auto;
             margin: 5px 0;
         }
+            .room-image img{
+                max-width:100%;
+            }
 
             .room-data{
                 width: 100%;
@@ -199,6 +202,30 @@ body > header {
                 border-left: 2px solid #ff5500;
 
             }
+
+    .room-booking {
+        display: flex;
+        justify-content: flex-end;
+    }
+        .room-booking button{
+            border: none;
+            padding:10px;
+            font-size: 16px;
+            line-height: 16px;
+            font-family: 'Roboto';
+            border-radius: 3px;
+            background: rgb(250, 73, 3);
+            background-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .room-booking button:hover{
+            background: rgb(223, 36, 3);
+        }
+    
 
     iframe{
         width: 100%;
@@ -309,8 +336,42 @@ body > header {
         cursor: pointer;
         transition: 0.3s;
     }
+    
+    input[type="submit"]:hover{
+        background: rgb(223, 36, 3);
+    }
 
 /* https://codepen.io/facundocorradini/pen/MQmoLR */
+
+@media (max-width: 1204px) {
+    .container {
+        width: 80%;
+    }
+
+} 
+
+@media (max-width: 864px) {
+    .room-details{
+        line-height: 16px;
+        font-size: 14px;
+    }
+
+} 
+
+@media (max-width: 650px) {
+    .room-details,
+    .room-details-left{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rating-reviews {
+        border: none;
+        margin: 5px 0;
+        padding: 0;
+    }
+
+} 
 
 
 
