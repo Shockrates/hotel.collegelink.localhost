@@ -27,6 +27,14 @@
         return;
     }
 
+    //Check for booking dates
+    $checkInDate = $_REQUEST['check_in_date'];
+    $checkOutDate = $_REQUEST['check_out_date'];
+    $booked = empty($checkInDate) || empty($checkOutDate); 
+    if (!$booked) {
+        # code...
+    }
+
     //Get current User id
     $userId  = User::getCurrentUserId();
   
@@ -211,7 +219,25 @@
                     </p>
                 </div>
                 <div class="room-booking">
-                    <button>Book Now</button>
+                    <?php 
+                        if ($booked) {
+                    ?>
+                        <span>Already Booked</span>
+                    <?php 
+                        } else {
+                    ?>
+                        <form action="../actions/book.php" name="bookingForm"method="post">
+                            <input type="hidden" name="room_id" value="<?=$roomId?>">
+                            <input type="hidden" name="check_in_date" value="<?=$checkInDate?>">
+                            <input type="hidden" name="check_out_date" value="<?=$$checkOutDate?>">
+                            <button type="submit">Book Now</button>
+                        </form>
+                    <?php
+                        }
+                    ?>
+                    
+                    
+                    
                 </div>
                 <!--Room Desrciption Section End-->
                 <br/>
@@ -221,12 +247,12 @@
                 <div class="room-review-list border-left">
                     <h3>Reviews</h3>
                     <?php
-                        foreach ($roomReviews as $review) {
+                        foreach ($roomReviews as $counter => $review) {
                     ?>
                     <div class="room-user-review">
                         <div class="user-rating">
                             <p>
-                                <span><?=$review['review_id']?>.</span>
+                                <span><?=$counter+1?>.</span>
                                 <span><?=$review['user_name']?></span>
                             </p>
                             <div>
@@ -262,27 +288,32 @@
 
                 <div class="my-rating border-left">
                     <h3>Add Review</h3>
-        
-                    <div class="star-rating">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" class="my-star fa fa-star star-5" data-star="5" title="text"></label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" class="my-star fa fa-star star-4" data-star="4" title="text"></label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" class="my-star fa fa-star star-3" data-star="3" title="text"></label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" class="my-star fa fa-star star-2" data-star="2" title="text"></label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" class="my-star fa fa-star star-1" data-star="1" title="text"></label>
-                    </div>
-                    
-                    <!-- <input type="number" readonly id="output" maxlength="1" size="1">  -->
-                    <div class="user-review">
-                       <textarea name="userReview" conte id="userReview" cols="25" rows="5"></textarea>
-                    </div>
-                    <div class="action">
-                        <input name="submit" id="submitButton" type="submit" value="Submit Review">
-                    </div>
+                    <br>
+                    <form name="reviewForm" action="../actions/review.php" method="post">
+                        <input type="hidden" name="room_id" value="<?=$roomId?>">    
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" class="my-star fa fa-star star-5" data-star="5" title="text"></label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" class="my-star fa fa-star star-4" data-star="4" title="text"></label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" class="my-star fa fa-star star-3" data-star="3" title="text"></label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" class="my-star fa fa-star star-2" data-star="2" title="text"></label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" class="my-star fa fa-star star-1" data-star="1" title="text"></label>
+                        </div>
+                        
+                        <!-- <input type="number" readonly id="output" maxlength="1" size="1">  -->
+                        <div class="user-comment">
+                            <textarea name="userComment"  id="userComment" cols="25" rows="5"></textarea>
+                        </div>
+                        <div class="action">
+                            <input name="submit" id="submitButton" type="submit" value="Submit Review">
+                        </div>
+
+                    </form>
+                  
                 </div>
                 
             </div> 
