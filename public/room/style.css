@@ -175,6 +175,10 @@ body > header {
                 border-right: 2px dashed #ff5500;;
             }
 
+            .room-data p{
+                text-align: center;
+            }
+
             .room-data:last-child{
                 border: none;
             }
@@ -359,16 +363,44 @@ body > header {
 } 
 
 @media (max-width: 650px) {
-    .room-details,
-    .room-details-left{
-        flex-direction: column;
-        align-items: flex-start;
+    
+   
+    .room-data i{
+        font-size: 16px;  
+        align-self:center;
+        
+        top: 0; /* new */  
+    }
+
+    .room-data p{   
+        font-size: 10px;
+    }
+
+    .room-data p:first-child{
+        font-size: 16px;
     }
 
     .rating-reviews {
         border: none;
         margin: 5px 0;
         padding: 0;
+    }
+
+} 
+
+@media (max-width: 404px) {
+    
+   
+    .room-data i{
+        font-size: 14px;    
+    }
+
+    .room-data p{   
+        font-size: 8px;
+    }
+
+    .room-data p:first-child{
+        font-size: 14px;
     }
 
 } 

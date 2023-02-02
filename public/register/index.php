@@ -53,16 +53,16 @@
 
                 <fieldset id="formRegister">
                     <div class="form-group"> 
-                        <input type="text" id="username" name="username" placeholder="Name">
+                        <input type="text" id="username" name="username" placeholder="Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email Address">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group"> 
-                        <input type="password" id="password" name="password" placeholder="Passwors">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
                     </div>
                     <div class="form-group"> 
-                        <input type="password" id="rePassword" name="rePassword" placeholder="Repeat Password">
+                        <input type="password" id="rePassword" name="rePassword" placeholder="Repeat Password" required>
                     </div>
                 </fieldset>
               

@@ -175,7 +175,7 @@
                 <div class="room-details">
                     <div class="room-data">
                         <i class="fi fi-ss-users-alt"> <?=$roomInfo['count_of_guests']?></i>
-                       <p>COUNT OF GUESTS</p>
+                        <p>COUNT OF GUESTS</p>
                     </div>
                     <div class="room-data">
                    
@@ -215,7 +215,7 @@
                 </div>
                 <!--Room Desrciption Section End-->
                 <br/>
-                <iframe src = "https://maps.google.com/maps?q=37.9767030,23.7504170&hl=es;z=14&amp;output=embed"></iframe>
+                <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe>
                 <br/>
                 <!--Review List Section Start-->
                 <div class="room-review-list border-left">

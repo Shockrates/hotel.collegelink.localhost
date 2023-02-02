@@ -232,7 +232,7 @@
                             <p><?=$availableroom['description_short']?></p>
                             <div class="button-right">
                                 <button>
-                                    <a href="../room/?room_id=<?=$availableroom['room_id']?>">Go to room page</a>
+                                    <a href="../room/?room_id=<?=$availableroom['room_id']?>&checkInDate=<?=$checkInDate?>&checkOutDate=<?=$checkOutDate?>">Go to room page</a>
                                 </button>
                             </div>
                         </div> 

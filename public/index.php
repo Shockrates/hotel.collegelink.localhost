@@ -102,7 +102,7 @@
                     <fieldset id="room-details">
                         <div class="form-group">
                            
-                            <select id="city" name="city">
+                            <select id="city" name="city" required>
                                 <option value="" selected>City</option>
                                 <?php
                                 foreach ($cities as $city) {
@@ -133,10 +133,10 @@
                     <fieldset id="formSearch">
                         <div class="form-group">
                            
-                            <input type="text" id="checkInDate" name="checkInDate" placeholder="Check-In Date" >
+                            <input type="text" id="checkInDate" name="checkInDate" placeholder="Check-In Date" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="checkOutDate" name="checkOutDate" placeholder="Check-Out Date">
+                            <input type="text" id="checkOutDate" name="checkOutDate" placeholder="Check-Out Date" required>
                         </div>
                     </fieldset>
                    
