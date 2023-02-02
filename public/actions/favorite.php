@@ -22,7 +22,7 @@ if (empty(User::getCurrentUserId())) {
 } 
 
 //Check if room_id is given
-$roomId = $_REQUEST['room_id'];
+$roomId = $_POST['room_id'];
 if (empty($roomId)) {
     header('Location: /');
 
@@ -33,7 +33,7 @@ if (empty($roomId)) {
 $favorite =  new Favorite();
 
 //Add or Remove room from favorites 
-$isFavorite = $_REQUEST['is_favorite'];
+$isFavorite = $_POST['is_favorite'];
 
 if(!$isFavorite){
     $favorite->setFavorite($roomId, User::getCurrentUserId());
@@ -42,6 +42,7 @@ if(!$isFavorite){
 }
 
 //return to room page
-header(sprintf('Location: /room/?room_id=%s', $roomId));
+//header(sprintf('Location: /room/?room_id=%s', $roomId));
 
+echo json_encode($favorite->isFavorite($roomId, User::getCurrentUserId()));
 

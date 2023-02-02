@@ -22,7 +22,7 @@ if (empty(User::getCurrentUserId())) {
 } 
 
 //Check if room_id is given
-$roomId = $_REQUEST['room_id'];
+$roomId = $_POST['room_id'];
 if (empty($roomId)) {
     header('Location: /');
 
@@ -31,7 +31,10 @@ if (empty($roomId)) {
 
 // Add review
 $review =  new Review();
-$review->insertReview($roomId, User::getCurrentUserId(), $_REQUEST['rate'], $_REQUEST['userComment']);
+$result = $review->insertReview($roomId, User::getCurrentUserId(), $_POST['rate'], $_POST['userComment']);
+
 
 //return to room page
+//echo json_encode($review->getReviewsByRoom($roomId));
 header(sprintf('Location: /room/?room_id=%s', $roomId));
+

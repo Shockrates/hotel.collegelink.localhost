@@ -141,12 +141,12 @@ body > header {
                 
                 }
 
-            .favorite i{
+            .favoriteForm i{
                 cursor: pointer;
                 transition: all 0.2s;
             }
 
-            .favorite i:hover{
+            .favoriteForm i:hover{
                 color:#f1c707;
                 transform: scale(1.3);
             }

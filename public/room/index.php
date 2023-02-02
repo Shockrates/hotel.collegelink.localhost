@@ -28,12 +28,12 @@
     }
 
     //Check for booking dates
-    $checkInDate = $_REQUEST['check_in_date'];
-    $checkOutDate = $_REQUEST['check_out_date'];
-    $booked = empty($checkInDate) || empty($checkOutDate); 
-    if (!$booked) {
-        # code...
-    }
+    // $checkInDate = $_REQUEST['check_in_date'];
+    // $checkOutDate = $_REQUEST['check_out_date'];
+    $booked = false; //empty($checkInDate) || empty($checkOutDate); 
+    // if (!$booked) {
+    //     # code...
+    // }
 
     //Get current User id
     $userId  = User::getCurrentUserId();
@@ -157,10 +157,10 @@
                             </ul>
                         </div>
                         <div class="favorites">
-                            <form class="favorite" name="favorite" id="favorite" action="../actions/favorite.php" method="post">
+                            <form class="favoriteForm" name="favoriteForm" id="favoriteForm" method="post">
                                 <input type="hidden" name="room_id" value="<?=$roomId?>">
-                                <input type="hidden" name="is_favorite" value="<?=($isFavorite) ? '1' : '0';?>">
-                                <i class="fa fa-heart <?=($isFavorite) ? 'is-favorite' : '';?>" onclick="submitFavorite();return false;"></i>
+                                <input type="hidden" name="is_favorite" id="is_favorite" value="<?=($isFavorite) ? '1' : '0';?>">
+                                <i class="fa fa-heart <?=($isFavorite) ? 'is-favorite' : '';?>" id="favorite"></i>
                             </form>
                             
                         </div>
@@ -289,7 +289,7 @@
                 <div class="my-rating border-left">
                     <h3>Add Review</h3>
                     <br>
-                    <form name="reviewForm" action="../actions/review.php" method="post">
+                    <form name="reviewForm" id="reviewForm" action="../actions/review.php" method="post">
                         <input type="hidden" name="room_id" value="<?=$roomId?>">    
                         <div class="star-rating">
                             <input type="radio" id="star5" name="rate" value="5" />
