@@ -5,7 +5,7 @@
     use Hotel\Room;
     use Hotel\Favorite;
     use Hotel\Review;
-
+    use Hotel\Booking;
 
     //Initialize Room and Favorite service
     $room = new Room();
@@ -28,12 +28,15 @@
     }
 
     //Check for booking dates
-    // $checkInDate = $_REQUEST['check_in_date'];
-    // $checkOutDate = $_REQUEST['check_out_date'];
-    $booked = false; //empty($checkInDate) || empty($checkOutDate); 
-    // if (!$booked) {
-    //     # code...
-    // }
+    $checkInDate =isset($_REQUEST['check_in_date']) ? $_REQUEST['check_in_date'] : ''; 
+    $checkOutDate =isset($_REQUEST['check_out_date']) ? $_REQUEST['check_out_date'] : ''; 
+    $booked = empty($checkInDate) || empty($checkOutDate); 
+    if (!$booked) {
+        //Check bookings
+        $booking = new Booking();
+        $booked = $booking->isBooked($roomId, $checkInDate, $checkOutDate);
+        // var_dump($booked);die;
+    }
 
     //Get current User id
     $userId  = User::getCurrentUserId();
@@ -229,7 +232,7 @@
                         <form action="../actions/book.php" name="bookingForm"method="post">
                             <input type="hidden" name="room_id" value="<?=$roomId?>">
                             <input type="hidden" name="check_in_date" value="<?=$checkInDate?>">
-                            <input type="hidden" name="check_out_date" value="<?=$$checkOutDate?>">
+                            <input type="hidden" name="check_out_date" value="<?=$checkOutDate?>">
                             <button type="submit">Book Now</button>
                         </form>
                     <?php

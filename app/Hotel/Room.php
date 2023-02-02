@@ -102,7 +102,7 @@ class Room extends BaseService
             $sql .= 'city = :city AND ';
         }
         if (!empty($typeId)) {
-            $sql .= 'type_id = :type_id AND ';
+            $sql .= 'room.type_id = :type_id AND ';
         }
         if (!empty($guests)) {
             $sql .= 'count_of_guests = :count_of_guests AND ';

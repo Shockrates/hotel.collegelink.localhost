@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     // Get the favorite form,
     const favoriteForm = document.getElementById('favoriteForm');
-    favoriteForm.addEventListener('click', function(event){
+    favoriteForm.addEventListener('click', (event) => {
         //Prevent the event from submitting the form, no redirect or page reload
         event.preventDefault();
         /**
@@ -144,7 +144,6 @@ async function setFavorite(formattedData){
         document.getElementById('is_favorite').value = "0";
         document.getElementById('favorite').classList.remove('is-favorite');
     }
-    console.log(data);
     
 }
 

@@ -5,7 +5,6 @@ const range = document.querySelector(".range-selected");
 const rangeInput = document.querySelectorAll(".range-input input");
 const rangePrice = document.querySelectorAll(".range-price input");
 
-console.log(rangePrice[0].value ," ", rangeInput[0].max);
 range.style.left = (rangePrice[0].value / rangeInput[0].max) * 100 + "%";
 range.style.right = 100 - (rangePrice[1].value / rangeInput[1].max) * 100 + "%";
 
