@@ -41,7 +41,7 @@ class Review extends BaseService
             ':room_id' => $roomId,
         ];
         //Create SQL query  
-        $sql = 'SELECT review.*, user.name as user_name  FROM review INNER JOIN user ON review.user_id = user.user_id WHERE room_id = :room_id ORDER BY created_time ASC';
+        $sql = 'SELECT review.*, user.name as user_name  FROM review INNER JOIN user ON review.user_id = user.user_id WHERE room_id = :room_id ORDER BY created_time DESC';
         //Fetch SQL results
         $room = $this->fetchAll($sql, $parameters);
         return $room;
@@ -58,6 +58,20 @@ class Review extends BaseService
             //Fetch SQL results
             $avg = $this->fetch($sql, $parameters);
             return $avg;
+    }
+
+    public function getLastRoomReview($roomId)
+    {
+        //Create Parameters TABLE
+        $parameters = [
+            ':room_id' => $roomId,
+        ];
+            //Create SQL query  
+            // $sql = 'SELECT  review.*, user.name as user_name  FROM review INNER JOIN user ON review.user_id = user.user_id WHERE room_id = :room_id ORDER BY review_id DESC LIMIT 1';
+            $sql = 'SELECT (SELECT COUNT(*) FROM review WHERE room_id = :room_id) as count, review.*, user.name as user_name  FROM review INNER JOIN user ON review.user_id = user.user_id WHERE room_id = :room_id ORDER BY review_id DESC LIMIT 1';
+            //Fetch SQL results
+            $last = $this->fetch($sql, $parameters);
+            return $last;
     }
 
     public function updateRoomAvg($roomId, $avgReviews, $countReviews)

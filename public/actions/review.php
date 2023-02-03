@@ -33,8 +33,7 @@ if (empty($roomId)) {
 $review =  new Review();
 $result = $review->insertReview($roomId, User::getCurrentUserId(), $_POST['rate'], $_POST['userComment']);
 
-
 //return to room page
-//echo json_encode($review->getReviewsByRoom($roomId));
+//echo json_encode($review->getLastRoomReview($roomId));
 header(sprintf('Location: /room/?room_id=%s', $roomId));
 

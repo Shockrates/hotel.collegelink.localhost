@@ -247,7 +247,7 @@
                 <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe>
                 <br/>
                 <!--Review List Section Start-->
-                <div class="room-review-list border-left">
+                <div class="room-review-list border-left" id="room-review-list">
                     <h3>Reviews</h3>
                     <?php
                         foreach ($roomReviews as $counter => $review) {
@@ -276,11 +276,10 @@
                                 </ul>
                             </div>
                         </div>
-                    
                         <div class="time-added"><p>Add time: <?=$review['created_time']?></p ></div>
-                        <div class="user-comment">
-                            <p><?=$review['comment']?></p>
-                        </div> 
+                            <div class="user-comment">
+                                <p><?=$review['comment']?></p>
+                            </div> 
                     </div>
                     <?php
                         }

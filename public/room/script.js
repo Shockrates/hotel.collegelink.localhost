@@ -94,6 +94,7 @@ function submitFavorite() {
 
 
 async function addReview(formattedData){
+    
     /**
      * If we want to 'POST' something we need to change the `method` to 'POST'
      * 'POST' also expectes the request to send along values inside of `body`
@@ -110,12 +111,40 @@ async function addReview(formattedData){
      * `response.text()` instead of `response.json()` to convert it to someting
      * that JavaScript understands
      */
-    const data = await response.text();
+    const data = await response.json();
     //This should later print out the values submitted through the form
+    let li = '';
+    let commentHtml ='';
     if(data){
-       
+        for ($i=1; $i <= 5; $i++) { 
+            if (data['rate'] >= $i){
+                li += `<li class="fa fa-star is-active"></li>\n`;
+             }else{
+                li +=`<li class="fa fa-star"></li>\n`;
+            }                       
+        }
+
+        commentHtml = `<div class="room-user-review">
+                        <div class="user-rating">
+                            <p>
+                                <span>${data['count']}.</span>
+                                <span>${data['user_name']}</span>
+                            </p>
+                            <div>
+                                <ul class="star-reviews">
+                                    ${li}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="time-added"><p>Add time: ${data['created_time']}</p ></div>
+                        <div class="user-comment">
+                            <p>${data['comment']}</p>
+                        </div> 
+                </div>`;
     }
-    console.log(data);
+    console.log(commentHtml);
+    document.getElementById('room-review-list').innerHTML += commentHtml;
+    
 }
 
 async function setFavorite(formattedData){
