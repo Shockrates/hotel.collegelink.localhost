@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const reviewForm = document.getElementById('reviewForm'); 
     reviewForm.addEventListener('submit', function(event){
         //Prevent the event from submitting the form, no redirect or page reload
-        // event.preventDefault();
-        // const formattedData = new FormData(reviewForm);
-        // addReview(formattedData);
+        event.preventDefault();
+        const formattedData = new FormData(reviewForm);
+        addReview(formattedData);
    });
    
 

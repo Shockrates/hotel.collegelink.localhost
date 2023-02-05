@@ -49,4 +49,18 @@ class Favorite extends BaseService
         $this->execute($sql, $parameters);
        
     }
+
+    public function getListByUser($userId)
+    {
+        //Create Parameters TABLE
+        $parameters = [
+            ':user_id' => $userId,
+        ];
+        //Create SQL query  
+        $sql = 'SELECT favorite.*, room.name FROM favorite INNER JOIN room ON favorite.room_id = room.room_id WHERE user_id = :user_id';
+        //Fetch SQL results
+        $allRecords = $this->fetchAll($sql, $parameters);
+        
+        return $allRecords;
+    }
 }

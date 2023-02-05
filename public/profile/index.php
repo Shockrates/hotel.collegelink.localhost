@@ -3,7 +3,31 @@
 require __DIR__.'/../../boot/boot.php';
     
 use Hotel\User;
+use Hotel\Room;
+use Hotel\Favorite;
+use Hotel\Review;
+use Hotel\Booking;
 
+$userId = User::getCurrentUserId();
+
+//If there is NO logged User return to main
+if (empty($userId)) {
+    header('Location: /');
+    return;
+} 
+
+//Get all favorite rooms
+$favorite = new Favorite();
+$favorites = $favorite->getListByUser($userId);
+
+//Get all reviewd rooms
+$review = new Review();
+$reviews = $review->getReviewsByUser($userId);
+
+//Get all user Bookings
+$booking = new Booking();
+$bookings = $booking->getBookingsByUser($userId);
+//print_r($bookings);die;
 ?>
 
 <!DOCTYPE html>
@@ -79,91 +103,145 @@ use Hotel\User;
     <main>
         <div class="container">
             <!-- Hotel Reviews & Favorites Start -->
-            <aside class="hotel-reviews box">
-                    <header>
-                        <p>
-                           Favorites
-                        </p>
-                       
-                       
-                    </header>
-                    <div class="hotel-name">
-                        <span>1.</span>   
-                        <span>Michelangello </span> 
-                    </div>
-                    <header>
-                        <p>
-                           Reviews
-                        </p>
-                       
-                    </header>
-                    <div class="star-rating">
-                        <div class="hotel-name">
-                            <span>1.</span> 
-                            <span> <p>Michelangello</p> 
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </span>  
-                        </div>
+            <aside class="profile-hotels box">
+
+                <div class="profile-favorites">
+                    <h4>
+                        Favorites      
+                    </h4>
+                    <?php
+                        if (count($favorites) > 0) {
+                            # code...
                         
-                    </div>
+                    ?>
+                    <ol>
+                        <?php 
+                            foreach ($favorites as $key => $favoriteRoom) {
+                                # code...
+                        ?>
+                        <li>
                 
+                                <a href="../room?room_id=<?=$favoriteRoom['room_id']?>"><?=$favoriteRoom['name']?></a>
+                        </li>
+                        <?php 
+                            }
+                        ?>
+                    <?php 
+                        }else{
+                    ?>
+                    <h4 class="alert">You don't have any favorite Hotel</h4>
+                    <?php         
+                        }    
+                    ?>
+                    
+                </div>
+                <div class="profile-reviews">
+                    <h4>
+                        Reviews
+                    </h4>
+                        <div class="hotel-name">
+                    <?php
+                    if (count($reviews) > 0) {
+                        # code...
+                        
+                    ?>
+                    <ol>
+                        <?php 
+                            foreach ($reviews as $key => $reviewedRoom) {
+                                # code...
+                        ?>
+                        <li>
+                            <a href="../room?room_id=<?=$reviewedRoom['room_id']?>"><?=$reviewedRoom['name']?></a>
+                                <div> 
+                                    <?php
+                                        $roomAvgRview = $reviewedRoom['rate'];
+                                        for ($i=1; $i <= 5; $i++) { 
+                                            if ($roomAvgRview >= $i){
+                                    ?>  
+                                        <span class="fa fa-star checked"></span>
+                                    <?php 
+                                            }else{
+                                    ?>
+                                        <span class="fa fa-star"></span>
+                                    <?php     
+                                            }                       
+                                        }
+                                    ?>
+                                </div>  
+                            </li>
+                        <?php 
+                            }
+                        ?>
+                    <?php 
+                        }else{
+                    ?>
+                    <h4 class="alert">You made any reviews yet</h4>
+                    <?php         
+                        }    
+                    ?>
+                        </div>   
+                </div>  
             </aside>
             <!-- Hotel Reviews & Favorites End-->
 
             <!-- Hotel List Start -->
             <section class="box hotel-list">
                 <header class="hotel-list__title">
-                    <h2>Search Results</h2>
+                    <h2>My Bookings</h2>
                 </header>
-
+                <?php
+                foreach ($bookings as $bookedRoom) {
+                ?>
                 <article>
                     <div class="hotel-list__hotel">
-                   
+                        
                         <aside class="hotel-list__hotel__media">
-                            <img src="../assets/images/rooms/room-1.jpg" alt="room-1" width="100%" height="auto">
+                            <img src="../assets/images/rooms/<?=$bookedRoom['photo_url']?>" alt="room-<?=$bookedRoom['photo_url']?>" width="100%" height="auto">
                         </aside>
                         <div class="hotel-list__hotel__info">
-                            <h1>Hotel Title</h1>
-                            <h2>Location</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi bibendum neque egestas congue quisque. </p>
+                            <h1><?=$bookedRoom['name']?></h1>
+                            <h2><?=$bookedRoom['city']?>, <?=$bookedRoom['area']?></h2>
+                            <p><?=$bookedRoom['description_short']?></p>
                             <div class="button-right">
                                 <button>
-                                    <a href="">Go to room page</a>
+                                    <a href="../room/?room_id=<?=$bookedRoom['room_id']?>">Go to room page</a>
                                 </button>
                             </div>
                         </div> 
-                  
+                        
                     </div>
                     <div class="hotel-list__hotel__info__room">
                         
-                        <div class="room-price">
-                            <span>Total Cost: 500</span> 
+                            <div class="room-price">
+                                <span>Total Cost: <?=$bookedRoom['total_price']?></span> 
+                            </div>
+                            <div class="room-details">
+                                <div class="room-details__text">
+                                    <span>Check-in Date: <?=$bookedRoom['check_in_date']?></span>
+                                </div>
+                                <div class="room-details__text">
+                                    <span>Check-in Date: <?=$bookedRoom['check_out_date']?></span>
+                                </div>
+                                <div class="room-details__text">
+                                    <span>Type pf room: <?=$bookedRoom['room_type']?></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="room-details">
-                            <div class="room-details__text">
-                                <span>Check-in Date: 2018-04-27</span>
-                            </div>
-                            <div class="room-details__text">
-                                <span>Check-in Date: 2018-04-30</span>
-                            </div>
-                            <div class="room-details__text">
-                                <span>Type pf room: Double Room</span>
-                            </div>
-                       
-                        </div>
-                    </div>
                 </article>
-                
-                  
+                <?php 
+                    }
+                ?>
+                <?php
+                    if (count($bookings) == 0) {
+                ?>
+                    <h4>You haven't made any bookings yet</h4>
+                <?php
+                    }
+                ?>
             </section>
             
             <!-- Hotel List End -->
         </div>
-     
     </main>
     <footer>
         <p>(c) Copyright T S.Rates 2022</p>

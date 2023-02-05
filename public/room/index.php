@@ -320,8 +320,11 @@
                 
             </div> 
         </div>
-        Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
+        
     </main>
-    
+    <footer>
+        Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
+        <p>(c) Copyright T S.Rates 2022</p>
+    </footer>
 </body>
 </html>

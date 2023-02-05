@@ -18,8 +18,8 @@
     $minPrice = $room->getMinaAndMaxPrice()[0];
     $maxPrice = $room->getMinaAndMaxPrice()[1];
     
-    $setMinPrice = isset($_REQUEST['minPrice']) ? $_REQUEST['minPrice'] : intval(($maxPrice*1)/3); 
-    $setMaxPrice = isset($_REQUEST['maxPrice']) ? $_REQUEST['maxPrice'] : intval(($maxPrice*2)/3); 
+    $setMinPrice = isset($_REQUEST['minPrice']) ? $_REQUEST['minPrice'] : intval($minPrice); 
+    $setMaxPrice = isset($_REQUEST['maxPrice']) ? $_REQUEST['maxPrice'] : intval($maxPrice); 
     
 
     //Get page Parameters

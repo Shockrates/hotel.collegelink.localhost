@@ -73,4 +73,19 @@ class Booking extends BaseService
         return $room;
     }
 
+    public function getBookingsByUser($userId)
+    {
+        //Create Parameters TABLE
+        $parameters = [
+            ':user_id' => $userId,
+        ];
+        //Create SQL query  
+        $sql = 'SELECT booking.*, room.*, room_type.title AS room_type FROM booking INNER JOIN room ON booking.room_id = room.room_id INNER JOIN room_type ON room.type_id = room_type.type_id WHERE user_id = :user_id';
+        //Fetch SQL results
+        $room = $this->fetchAll($sql, $parameters);
+        return $room;
+    }
+
+
+
 }

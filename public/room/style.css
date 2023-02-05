@@ -90,7 +90,7 @@ body > header {
             color: #ff5500;
         }
     body > main {
-        margin: 155px auto 0 auto;
+        margin: 155px auto 155px auto;
         /* height: 100%; */
         flex: 1 0 auto;
     }
@@ -348,6 +348,20 @@ body > header {
     input[type="submit"]:hover{
         background: rgb(223, 36, 3);
     }
+
+body > footer {
+    background: #ccc;
+    border-top: 3px solid #808080;
+    flex-shrink: 0;
+    }
+        body > footer p {
+            color: #616161;
+            font-size: 13px;
+            text-align: center;
+            margin: 0;
+            padding: 25px 0;
+            
+        }
 
 /* https://codepen.io/facundocorradini/pen/MQmoLR */
 

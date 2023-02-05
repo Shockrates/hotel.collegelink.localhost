@@ -47,6 +47,19 @@ class Review extends BaseService
         return $room;
     }
 
+    public function getReviewsByUser($userId)
+    {
+        //Create Parameters TABLE
+        $parameters = [
+            ':user_id' => $userId,
+        ];
+        //Create SQL query  
+        $sql = 'SELECT review.*, room.name FROM review INNER JOIN room ON review.room_id = room.room_id WHERE user_id = :user_id';
+        //Fetch SQL results
+        $room = $this->fetchAll($sql, $parameters);
+        return $room;
+    }
+
     public function getRoomAvgRate($roomId)
     {
         //Create Parameters TABLE

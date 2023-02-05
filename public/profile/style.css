@@ -92,9 +92,10 @@ body > header {
           
         }
 
-        li {
+        ul > li {
             display: inline;
             padding: 10px;
+            font-size: 20px; 
            
         }
 
@@ -105,9 +106,8 @@ body > header {
 
         }
 
-        li a {
+        li a{
             color: rgb(73, 67, 67);  
-            font-size: 14px; 
             cursor: pointer;
             transition: 0.3s;
             font-weight: 200;
@@ -122,6 +122,15 @@ body > header {
         li form{
             display: inline;
         }
+
+        ol {
+            color: rgb(73, 67, 67);  
+            font-size: 22px; 
+        }
+        ol li{
+            margin-bottom: 12px;
+        }
+
         
     body > main {
         margin: 155px auto 0 auto;
@@ -136,20 +145,22 @@ body > header {
                 box-sizing: border-box;
             }
 
-            aside > header {
+            h4{
                 margin: auto; 
                 margin-bottom: 25px;
                 color: #ff5500;
                 text-align: left;
                 font-size: 18px;
+                text-transform: Uppercase;
             }
                 
-            aside.hotel-reviews {
+            aside.profile-hotels{
                 
                 position: sticky;
                 
                 top: 85px;
                 width: 25%;
+                min-width: fit-content;
                 height: fit-content;
                 padding: 25px;
                 box-shadow: 0 2px 4px 4px rgba(0, 0, 0, .11);
@@ -157,12 +168,9 @@ body > header {
                 /* border: 3px solid rgb(47, 0, 255); */
             }
 
-            .hotel-name{
-                display: flex;
-                justify-content: left;
-                align-items:center;
-                margin-left: 15px;
-                
+            .profile-favorites{
+           
+               margin-bottom: 20px; 
             }
 
             .checked {
@@ -279,6 +287,7 @@ body > header {
                             .room-details__text{
                                 width: 100%;
                                 text-align: center;
+                                padding: 0 5px;
                                 /* padding: 0.5em 0; */
                                 border-right: 1px inset rgb(211, 204, 204);
                             }
@@ -301,6 +310,12 @@ body > footer {
     }
 /* ------------------ MEDIA QUERIES */
 
+@media (max-width: 2004px) {
+    .room-details__text{
+        font-size: 14px;
+    }
+}     
+
 @media (max-width: 1604px) {
     .container {
         width: 70%;
@@ -311,6 +326,7 @@ body > footer {
     .container {
         width: 80%;
     }
+    
     /* section.hotel-list {
         width: 550px;
     } */
