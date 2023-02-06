@@ -54,9 +54,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="script.js"></script>
+    <script src="../assets/js/search.js"></script>
     <title>List</title>
 </head>
 <body>
+<div id="includeHtml"></div>
     <!-- NAvbar Section Start -->
     <header>
         <div class="container">
@@ -124,7 +126,7 @@
                     </p>
                    
                 </header>
-                <form form method="get" action="index.php">
+                <form name="searchForm" id="searchForm" method="get" action="index.php">
                     <div class="room-search">
                         
                         <div class="form-group">
@@ -210,7 +212,7 @@
             <!-- Hotel Advanced Search Form End-->
 
             <!-- Hotel List Start -->
-            <section class="hotel-search-results hotel-list">
+            <section class="hotel-search-results hotel-list" id="search_results">
                 <header class="hotel-list__title">
                     <h2>Search Results</h2>
                 </header>
