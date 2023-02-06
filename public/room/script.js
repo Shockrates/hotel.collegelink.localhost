@@ -124,23 +124,23 @@ async function addReview(formattedData){
             }                       
         }
 
-        commentHtml = `<div class="room-user-review">
-                        <div class="user-rating">
-                            <p>
-                                <span>${data['count']}.</span>
-                                <span>${data['user_name']}</span>
-                            </p>
-                            <div>
-                                <ul class="star-reviews">
-                                    ${li}
-                                </ul>
+        commentHtml =  `<div class="room-user-review">
+                            <div class="user-rating">
+                                <p>
+                                    <span>${data['count']}.</span>
+                                    <span>${data['user_name']}</span>
+                                </p>
+                                <div>
+                                    <ul class="star-reviews">
+                                        ${li}
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="time-added"><p>Add time: ${data['created_time']}</p ></div>
-                        <div class="user-comment">
-                            <p>${data['comment']}</p>
-                        </div> 
-                </div>`;
+                            <div class="time-added"><p>Add time: ${data['created_time']}</p ></div>
+                            <div class="user-comment">
+                                <p>${data['comment']}</p>
+                            </div> 
+                        </div>`;
     }
     console.log(commentHtml);
     document.getElementById('room-review-list').innerHTML += commentHtml;

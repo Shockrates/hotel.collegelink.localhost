@@ -382,7 +382,13 @@ body > footer {
 
 @media (max-width: 650px) {
     
-   
+    .room-hotel-info{
+        max-width: 30%;
+    }
+    .room-details{
+        line-height: 14px;
+        font-size: 12px;
+    }
     .room-data i{
         font-size: 16px;  
         align-self:center;
@@ -405,6 +411,7 @@ body > footer {
     }
 
 } 
+
 
 @media (max-width: 404px) {
     

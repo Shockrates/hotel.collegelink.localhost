@@ -58,10 +58,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="script.js"></script>
+    <script>
+    //   $(function() {
+    //      $("#includeHtml").load(`../components/comment.php?room_id=<?=$roomId?>`);
+    //   });
+   </script>
     <title>Document</title>
 </head>
 <body>
+<div id="includeHtml"></div>
       <!-- NAvbar Section Start -->
       <header>
         <div class="container">
@@ -126,16 +133,6 @@
                 <!-- Room data Section Start-->
                 <div class="room-details">
                     <div class="room-details-left">
-                        <!-- <div class="room-name">
-                            
-                        </div>
-                        <div>
-                        ~
-                        </div>
-                       
-                        <div class="room-address">
-                            Town, Area
-                        </div> -->
                         <div class="room-hotel-info">
                             <?=sprintf('%s  ~  %s, %s ', $roomInfo['name'], $roomInfo['city'], $roomInfo['area'])?>
                         </div>
