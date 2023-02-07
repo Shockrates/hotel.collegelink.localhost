@@ -50,31 +50,6 @@ document.addEventListener('DOMContentLoaded', function(){
         
     })();//end of function
 
-
-    // Get the favorite form,
-    const favoriteForm = document.getElementById('favoriteForm');
-    favoriteForm.addEventListener('click', (event) => {
-        //Prevent the event from submitting the form, no redirect or page reload
-        event.preventDefault();
-        /**
-         * If we want to use every input-value inside of the form we can call
-         * `new FormData()` with the form we are submitting as an argument
-         * This will create a body-object that PHP can read properly
-         */
-        const formattedData = new FormData(favoriteForm);
-        setFavorite(formattedData);
-    });
-
-    // Get the review form,
-    const reviewForm = document.getElementById('reviewForm'); 
-    reviewForm.addEventListener('submit', function(event){
-        //Prevent the event from submitting the form, no redirect or page reload
-        event.preventDefault();
-        const formattedData = new FormData(reviewForm);
-        addReview(formattedData);
-   });
-   
-
 })
 
 //Used to submit logoutform with a tag
@@ -88,91 +63,11 @@ function submitFavorite() {
     //form.submit();  
 }
 
-// Get the whole form,
-//const form = document.getElementById('reviewForm');
 
 
 
-async function addReview(formattedData){
-    
-    /**
-     * If we want to 'POST' something we need to change the `method` to 'POST'
-     * 'POST' also expectes the request to send along values inside of `body`
-     * so we must specify that property too. We use the earlier created 
-     * FormData()-object and just pass it along.
-     */
-    const response = await fetch('../actions/review.php',{
-        method: 'POST',
-        body: formattedData
-    });
-    /*
-     * Because we are using `echo` inside of `handle_form.php` the response
-     * will be a string and not JSON-data. Because of this we need to use
-     * `response.text()` instead of `response.json()` to convert it to someting
-     * that JavaScript understands
-     */
-    const data = await response.json();
-    //This should later print out the values submitted through the form
-    let li = '';
-    let commentHtml ='';
-    if(data){
-        for ($i=1; $i <= 5; $i++) { 
-            if (data['rate'] >= $i){
-                li += `<li class="fa fa-star is-active"></li>\n`;
-             }else{
-                li +=`<li class="fa fa-star"></li>\n`;
-            }                       
-        }
 
-        commentHtml =  `<div class="room-user-review">
-                            <div class="user-rating">
-                                <p>
-                                    <span>${data['count']}.</span>
-                                    <span>${data['user_name']}</span>
-                                </p>
-                                <div>
-                                    <ul class="star-reviews">
-                                        ${li}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="time-added"><p>Add time: ${data['created_time']}</p ></div>
-                            <div class="user-comment">
-                                <p>${data['comment']}</p>
-                            </div> 
-                        </div>`;
-    }
-    console.log(commentHtml);
-    document.getElementById('room-review-list').innerHTML += commentHtml;
-    
-}
 
-async function setFavorite(formattedData){
-    /**
-     * If we want to 'POST' something we need to change the `method` to 'POST'
-     * 'POST' also expectes the request to send along values inside of `body`
-     * so we must specify that property too. We use the earlier created 
-     * FormData()-object and just pass it along.
-     */
-    const response = await fetch('../actions/favorite.php',{
-        method: 'POST',
-        body: formattedData
-    });
-    /*
-     * Because we are using `echo` inside of `handle_form.php` the response
-     * will be a string and not JSON-data. Because of this we need to use
-     * `response.text()` instead of `response.json()` to convert it to someting
-     * that JavaScript understands
-     */
-    const data = await response.json();
-    //This should later print out the values submitted through the form
-    if(data){
-        document.getElementById('is_favorite').value = "1";
-        document.getElementById('favorite').classList.add('is-favorite');
-    } else {
-        document.getElementById('is_favorite').value = "0";
-        document.getElementById('favorite').classList.remove('is-favorite');
-    }
-    
-}
+
+
 

@@ -59,6 +59,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="../assets/js/favorite.js"></script>
+    <script src="../assets/js/review.js"></script>
     <script src="script.js"></script>
     <script>
     //   $(function() {
@@ -156,14 +158,21 @@
                               
                             </ul>
                         </div>
+                        <?php 
+                            //Check for existing logged user
+                            if (!empty(User::getCurrentUserId())){
+                          
+                        ?>
                         <div class="favorites">
                             <form class="favoriteForm" name="favoriteForm" id="favoriteForm" method="post">
                                 <input type="hidden" name="room_id" value="<?=$roomId?>">
                                 <input type="hidden" name="is_favorite" id="is_favorite" value="<?=($isFavorite) ? '1' : '0';?>">
                                 <i class="fa fa-heart <?=($isFavorite) ? 'is-favorite' : '';?>" id="favorite"></i>
-                            </form>
-                            
+                            </form>                           
                         </div>
+                        <?php 
+                            }
+                        ?>
                     </div>
                     <div class="room-details-right">
                         <div class="price">
@@ -291,7 +300,7 @@
                     <form name="reviewForm" id="reviewForm" action="../actions/review.php" method="post">
                         <input type="hidden" name="room_id" value="<?=$roomId?>">    
                         <div class="star-rating">
-                            <input type="radio" id="star5" name="rate" value="5" />
+                            <input type="radio" id="star5" name="rate" value="5" required/>
                             <label for="star5" class="my-star fa fa-star star-5" data-star="5" title="text"></label>
                             <input type="radio" id="star4" name="rate" value="4" />
                             <label for="star4" class="my-star fa fa-star star-4" data-star="4" title="text"></label>
@@ -305,7 +314,7 @@
                         
                         <!-- <input type="number" readonly id="output" maxlength="1" size="1">  -->
                         <div class="user-comment">
-                            <textarea name="userComment"  id="userComment" cols="25" rows="5"></textarea>
+                            <textarea name="userComment"  id="userComment" cols="25" rows="5" required></textarea>
                         </div>
                         <div class="action">
                             <input name="submit" id="submitButton" type="submit" value="Submit Review">

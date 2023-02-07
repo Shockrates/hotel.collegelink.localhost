@@ -44,5 +44,6 @@ if(!$isFavorite){
 //return to room page
 //header(sprintf('Location: /room/?room_id=%s', $roomId));
 
+//Checks and Returns TRUE if room is favorite by looged user
 echo json_encode($favorite->isFavorite($roomId, User::getCurrentUserId()));
 
