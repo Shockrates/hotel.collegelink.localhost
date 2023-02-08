@@ -25,13 +25,17 @@ $(document).on('submit', '#searchForm', (e) => {
 // A $( document ).ready() block.
 $(document).ready(() => {
 
-    const urlParams = new URLSearchParams(window.location.search);
+    //const urlParams = new URLSearchParams(window.location.search);
+    var urlParams = window.location.href.slice(window.location.href.indexOf('?') + 1);
+    
+    console.log(urlParams);
 
     $.ajax(
-        'http://hotel.collegelink.localhost/components/test_results.php',
+        'http://hotel.collegelink.localhost/components/search_results.php',
         {
             type: "GET",
             dataType: "html",
+            data: urlParams, 
         }).done((result) =>{
             //Clear search_results container
             $('#search_results').html('');

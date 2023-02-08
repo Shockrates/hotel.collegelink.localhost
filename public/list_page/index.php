@@ -158,28 +158,28 @@
                               
             <!-- Hotel List Start -->
             <section class="hotel-search-results hotel-list" id="search_results">
-                <header class="hotel-list__title">
+                <!-- <header class="hotel-list__title">
                     <h2>Search Results</h2>
                 </header>
                 
                 <?php
-                foreach ($allAvailablerooms as $availableroom) {
+                //foreach ($allAvailablerooms as $availableroom) {
                     # code...
                 ?>
                 <article>
                     <div class="hotel-list__hotel">
                    
                         <aside class="hotel-list__hotel__media">
-                            <img src="../assets/images/rooms/<?=$availableroom['photo_url']?>" alt="room-1" width="100%" height="auto">
+                            <img src="../assets/images/rooms/<?//=$availableroom['photo_url']?>" alt="room-1" width="100%" height="auto">
                         </aside>
                         <div class="hotel-list__hotel__info">
-                            <h1><?=$availableroom['name']?></h1>
+                            <h1><?//=$availableroom['name']?></h1>
                             
-                            <h2><?=$availableroom['city']?>, <?=$availableroom['area']?></h2>
-                            <p><?=$availableroom['description_short']?></p>
+                            <h2><?//=$availableroom['city']?>, <?//=$availableroom['area']?></h2>
+                            <p><?//=$availableroom['description_short']?></p>
                             <div class="button-right">
                                 <button>
-                                    <a href="../room/?room_id=<?=$availableroom['room_id']?>&check_in_date=<?=$checkInDate?>&check_out_date=<?=$checkOutDate?>">Go to room page</a>
+                                    <a href="../room/?room_id=<?//=$availableroom['room_id']?>&check_in_date=<?//=$checkInDate?>&check_out_date=<?//=$checkOutDate?>">Go to room page</a>
                                 </button>
                             </div>
                         </div> 
@@ -188,7 +188,7 @@
                     <div class="hotel-list__hotel__info__room">
                         <div class="room-price">
                             <div class="room-details__text">
-                                <span>Per Night: <?=$availableroom['price']?></span> 
+                                <span>Per Night: <?//=$availableroom['price']?></span> 
                             </div>
                            
                         </div>
@@ -196,11 +196,11 @@
                            
                            
                             <div class="room-details__text">
-                                <span>Count of Guests: <?=$availableroom['count_of_guests']?></span>
+                                <span>Count of Guests: <?//=$availableroom['count_of_guests']?></span>
                             </div>
                             <div class="room-details__text">
                                 <div class="room-type">
-                                    <span>Type of room:</span><span><?=$availableroom['room_type']?></span>
+                                    <span>Type of room:</span><span><?//=$availableroom['room_type']?></span>
                                 </div>
                                 
                             </div>
@@ -209,17 +209,17 @@
                     </div>
                 </article>
                 <?php
-                 }
+                // }
                 ?>
                 <section>
                 <?php
-                    if (count($allAvailablerooms) == 0) {
+                    //if (count($allAvailablerooms) == 0) {
                 ?>
                     <h2>There are no available rooms</h2>
                 <?php
-                    }
+                   // }
                 ?>
-                </section>
+                </section> -->
             </section>
                     
             <!-- Hotel List End -->
