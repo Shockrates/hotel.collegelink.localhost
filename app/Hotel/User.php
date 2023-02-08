@@ -23,6 +23,19 @@ class User extends BaseService
         return $userList;
     }
 
+    public function getById($userId)
+    {
+        //Create Parameters TABLE
+        $parameters = [
+            ':user_id' => $userId,
+        ];
+        //Create SQL query  
+        $sql = 'SELECT * FROM user WHERE user_id = :user_id';
+        //Fetch SQL results
+        $user = $this->fetch($sql, $parameters);
+        return $user;
+    }
+
     public function getByEmail($email)
     {
         //Create Parameters TABLE

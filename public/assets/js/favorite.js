@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Get the favorite form,
     const favoriteForm = document.getElementById('favoriteForm');
 
+    //Add event listener to the Favorite Form
     favoriteForm.addEventListener('click', (event) => {
         //Prevent the event from submitting the form, no redirect or page reload
         event.preventDefault();
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function(){
          */
        
         const formattedData = new FormData(favoriteForm);
+
         setFavorite(formattedData);
     });
 });
@@ -25,7 +27,7 @@ async function setFavorite(formattedData){
      * so we must specify that property too. We use the earlier created 
      * FormData()-object and just pass it along.
      */
-    const response = await fetch('../actions/favorite.php',{
+    const response = await fetch('../actions/ajax/favorite.php',{
         method: 'POST',
         body: formattedData
     });
@@ -36,6 +38,7 @@ async function setFavorite(formattedData){
      * that JavaScript understands
      */
     const data = await response.json();
+
     //data return TRUE if user set room as "favorite" and false if NOT FAVORite
     if(data){
         document.getElementById('is_favorite').value = "1";

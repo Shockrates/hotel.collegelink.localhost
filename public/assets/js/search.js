@@ -3,7 +3,6 @@ $(document).on('submit', '#searchForm', (e) => {
     e.preventDefault();
     //Get form data
     const serializedData = $('#searchForm').serialize();
-    console.log(serializedData);
     //Ajax request
     $.ajax(
         'http://hotel.collegelink.localhost/components/search_results.php',
@@ -24,11 +23,8 @@ $(document).on('submit', '#searchForm', (e) => {
 
 // A $( document ).ready() block.
 $(document).ready(() => {
-
-    //const urlParams = new URLSearchParams(window.location.search);
-    var urlParams = window.location.href.slice(window.location.href.indexOf('?') + 1);
     
-    console.log(urlParams);
+    var urlParams = window.location.href.slice(window.location.href.indexOf('?') + 1);
 
     $.ajax(
         'http://hotel.collegelink.localhost/components/search_results.php',

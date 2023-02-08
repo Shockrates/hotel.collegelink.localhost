@@ -60,7 +60,7 @@
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="../assets/js/favorite.js"></script>
-    <script src="../assets/js/review.js"></script>
+    <script src="../assets/js/test-review.js"></script>
     <script src="script.js"></script>
     <script>
     //   $(function() {
@@ -196,7 +196,7 @@
                 </div>
                 <!--Room Desrciption Section End-->
                 <br/>
-                <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe>
+                <!-- <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe> -->
                 <br/>
                 <!--Review List Section Start-->
                 <div class="room-review-list border-left" id="room-review-list">

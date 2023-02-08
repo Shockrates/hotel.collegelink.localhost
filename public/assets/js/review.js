@@ -1,5 +1,3 @@
-console.log('review.js');
-
 document.addEventListener('DOMContentLoaded', function(){
 
     // Get the review form,
@@ -8,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
         //Prevent the event from submitting the form, no redirect or page reload
         event.preventDefault();
         const formattedData = new FormData(reviewForm);
+        console.log(formattedData);
         addReview(formattedData);
     });
 });
@@ -20,7 +19,7 @@ async function addReview(formattedData){
      * so we must specify that property too. We use the earlier created 
      * FormData()-object and just pass it along.
      */
-    const response = await fetch('../actions/review.php',{
+    const response = await fetch('../actions/ajax/review.php',{
         method: 'POST',
         body: formattedData
     });

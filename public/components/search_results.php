@@ -1,13 +1,10 @@
 <?php
     require __DIR__.'/../../boot/boot.php';
     
-   
     use Hotel\Room;
     
-
     //Initialize Room and RoomType service
     $room = new Room();
-    
     
     //Get page Parameters
     $selectedCity = $_REQUEST['city'];
@@ -17,7 +14,6 @@
     $selectedMinPrice = isset($_REQUEST['minPrice']) ? $_REQUEST['minPrice'] : ''; 
     $selectedMaxPrice = isset($_REQUEST['maxPrice']) ? $_REQUEST['maxPrice'] : '';
    
-
     $checkInDate = $_REQUEST['checkInDate'];
     $checkOutDate = $_REQUEST['checkOutDate'];
     

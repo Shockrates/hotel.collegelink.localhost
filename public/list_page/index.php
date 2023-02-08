@@ -9,7 +9,10 @@
     $room = new Room();
     $roomType = new RoomType();
     
-    //Get all cities, room types and no of guests
+    //Get current User id
+    $userId  = User::getCurrentUserId();
+
+    //Get all cities, room types and no of guests for populating select fields
     $cities = $room->getCities();
     $roomTypes = $roomType->getRoomTypes();
     $countOfGuestss = $room->getCountOfGuests();
@@ -37,7 +40,7 @@
 
     //Search for room
     $allAvailablerooms = $room->searchRoom($checkInDate, $checkOutDate, $selectedCity, $selectedRoomType,$selectedNumberOfGuests, $selectedMinPrice, $selectedMaxPrice);
-    // print_r($allAvailablerooms);die;
+ 
 
    
 ?>
@@ -60,7 +63,9 @@
 <body>
 <div id="includeHtml"></div>
 
+    <!-- SHARED NAVBAR COMPONNNT -->
     <?php include "../components/navbar.php";?>
+
     <main>
         <div class="container">
             <!-- Hotel Advanced Search Form Start -->
@@ -155,7 +160,8 @@
                 
             </aside>
             <!-- Hotel Advanced Search Form End-->
-                              
+             
+            <!--THE FOLLOWING SECTION WILL BE FILLED WITH JS ON LOAD PAGE AND WHEN SHEARCHFORM IS SUBMMMITED-->
             <!-- Hotel List Start -->
             <section class="hotel-search-results hotel-list" id="search_results">
                 <!-- <header class="hotel-list__title">
