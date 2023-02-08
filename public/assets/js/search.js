@@ -3,6 +3,7 @@ $(document).on('submit', '#searchForm', (e) => {
     e.preventDefault();
     //Get form data
     const serializedData = $('#searchForm').serialize();
+    console.log(serializedData);
     //Ajax request
     $.ajax(
         'http://hotel.collegelink.localhost/components/search_results.php',
@@ -19,4 +20,22 @@ $(document).on('submit', '#searchForm', (e) => {
             history.pushState({}, '', 'http://hotel.collegelink.localhost/list_page?'+serializedData);
         });
     
+});
+
+// A $( document ).ready() block.
+$(document).ready(() => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    $.ajax(
+        'http://hotel.collegelink.localhost/components/test_results.php',
+        {
+            type: "GET",
+            dataType: "html",
+        }).done((result) =>{
+            //Clear search_results container
+            $('#search_results').html('');
+            //Append results to html
+            $('#search_results').append(result);
+        });
 });

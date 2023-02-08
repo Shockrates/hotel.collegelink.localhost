@@ -37,7 +37,7 @@
 </head>
 <body>
     <header>    
-        <div class="flex-container">
+        <div class="container">
             <div class="header-content">
                 <div class="header-logo">
                     <span>Hotels</span>

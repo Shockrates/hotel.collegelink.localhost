@@ -59,63 +59,8 @@
 </head>
 <body>
 <div id="includeHtml"></div>
-    <!-- NAvbar Section Start -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="main-logo">
-                    <span>Hotels</span>
-                </div>
-                <ul class="main-navigation">           
-                    <li class="main-navigation__home">
-                        <a href="../index.php">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>  
-                    </li>
-                    <?php 
-                            //Check for existing logged user
-                            if (empty(User::getCurrentUserId())){
-                          
-                        ?>
-                        <li>
-                            <a href="../register">
-                                <i class="fa-solid fa-user-plus"></i>
-                                Register 
-                            </a>  
-                        </li> 
-                        <li>
-                            <a href="../login">
-                                <i class="fa-solid fa-right-to-bracket"></i>
-                                Login 
-                            </a>  
-                        </li> 
-                        <?php
-                            } else {
-                        ?>
-                         <li>
-                            <a href="../profile">
-                                <i class="fa-solid fa-user"></i>
-                                Profile
-                            </a>  
-                        </li>    
-                        <li>
-                            <form action="../actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
-                                <a href="#" onclick="submit();return false;">
-                                    <i class="fa-solid fa-right-to-bracket"></i>
-                                    Logout 
-                                </a> 
-                            </form> 
-                        </li> 
-                        <?php        
-                            }
-                        ?>       
-                </ul>
-            </div> 
-        </div>
-    </header>
-    <!-- Navbar Section End -->
- 
+
+    <?php include "../components/navbar.php";?>
     <main>
         <div class="container">
             <!-- Hotel Advanced Search Form Start -->
@@ -210,7 +155,7 @@
                 
             </aside>
             <!-- Hotel Advanced Search Form End-->
-
+                              
             <!-- Hotel List Start -->
             <section class="hotel-search-results hotel-list" id="search_results">
                 <header class="hotel-list__title">

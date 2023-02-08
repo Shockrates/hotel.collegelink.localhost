@@ -266,7 +266,7 @@ body > header {
                             display: flex;
                             justify-content: center;
                             text-align: center;
-                            width: 20%;
+                            width: 25%;
                             border-radius: 4px;
                             padding: 15px 5px;
                             background-color: rgb(65, 61, 61);
@@ -327,13 +327,20 @@ body > footer {
         width: 80%;
     }
     
-    /* section.hotel-list {
-        width: 550px;
-    } */
-    /* iframe {
-        max-width: 100%;
+} 
+
+@media (max-width: 1004px) {
+
+    ol {
+        font-size: 18px;
     }
-    section.hero {
-        background-size: cover;
-    } */
-}                  
+    
+} 
+
+@media (max-width: 804px) {
+
+    ol {
+        font-size: 16px;
+    }
+    
+}   
