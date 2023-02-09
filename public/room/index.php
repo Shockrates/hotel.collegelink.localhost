@@ -62,16 +62,11 @@
     <script src="../assets/js/favorite.js"></script>
     <script src="../assets/js/test-review.js"></script>
     <script src="script.js"></script>
-    <script>
-    //   $(function() {
-    //      $("#includeHtml").load(`../components/comment.php?room_id=<?=$roomId?>`);
-    //   });
-   </script>
     <title>Document</title>
 </head>
 <body>
 <div id="includeHtml"></div>
-      
+<button onclick="goToTop()" id="goToTopBtn" title="Go to top">Top</button>  
 <?php include "../components/navbar.php";?>
 
     <main>
@@ -201,42 +196,17 @@
                 <!--Review List Section Start-->
                 <div class="room-review-list border-left" id="room-review-list">
                     <h3>Reviews</h3>
-                    <?php
-                        foreach ($roomReviews as $counter => $review) {
-                    ?>
-                    <div class="room-user-review">
-                        <div class="user-rating">
-                            <p>
-                                <span><?=$counter+1?>.</span>
-                                <span><?=$review['user_name']?></span>
-                            </p>
-                            <div>
-                                <ul class="star-reviews">
-                                <?php
-                                    for ($i=1; $i <= 5; $i++) { 
-                                        if ($review['rate'] >= $i){
-                                ?>  
-                                <li class="fa fa-star is-active"></li>
-                                <?php 
-                                        }else{
-                                ?>
-                                    <li class="fa fa-star"></li>
-                                <?php     
-                                        }                       
-                                    }
-                                ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="time-added"><p>Add time: <?=$review['created_time']?></p ></div>
-                            <div class="user-comment">
-                                <p><?=$review['comment']?></p>
-                            </div> 
-                    </div>
-                    <?php
-                        }
-                    ?>
+                    <div id="review-list">
+                        <?php
+                            foreach ($roomReviews as $counter => $roomReview) {
+                        ?>
+                        <?php include "../components/review.php";?>
+                        <?php
+                            }
+                        ?>
                   
+                    </div>
+                    
                 </div>
                 <!--Review List Section End-->
 

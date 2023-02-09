@@ -13,8 +13,10 @@ $(document).on('submit', '#reviewForm', (e) => {
             data: serializedData, 
         }).done((result) =>{
             
-            //Append results to html
-            $('#room-review-list').append(result);
+            //Prepends results to html
+            $('#review-list').prepend(result);
+            //Changes all counters to accomonadate fro new entry
+            $('.review-counter').text(i => (i+1) + '.');
             
             
         });

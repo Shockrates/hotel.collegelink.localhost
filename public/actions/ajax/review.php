@@ -35,42 +35,13 @@ $result = $review->insertReview($roomId, User::getCurrentUserId(), $_POST['rate'
 $user = new User();
 $userData = $user->getById(User::getCurrentUserId());
 
-//Set counter
-$counter = count($review->getReviewsByRoom($roomId));
+//Set counter value is 0 because it will be prepended to review list so it will be on top
+//Counter value will change with jscript
+$counter = 0;
 
-//return to room page
-//echo json_encode($review->getLastRoomReview($roomId));
-$lastReview = $review->getLastRoomReview($roomId);
+//Create a $roomReview variable containign the newly insert review data 
+//Variable must use the name $roomReview in order to be used by review.php component
+$roomReview = $review->getLastRoomReview($roomId);
 
+include "../../components/review.php";
 ?>
-
-<div class="room-user-review">
-    <div class="user-rating">
-        <p>
-            <span><?=$counter?>.</span>
-            <span><?=$lastReview['user_name']?></span>
-        </p>
-        <div>
-            <ul class="star-reviews">
-            <?php
-                for ($i=1; $i <= 5; $i++) { 
-                    if ($lastReview['rate'] >= $i){
-            ?>  
-            <li class="fa fa-star is-active"></li>
-            <?php 
-                    }else{
-            ?>
-                <li class="fa fa-star"></li>
-            <?php     
-                    }                       
-                }
-            ?>
-            </ul>
-        </div>
-    </div>
-    <div class="time-added"><p>Add time: <?=$lastReview['created_time']//echo date();?></p ></div>
-        <div class="user-comment">
-            <p><?=$lastReview['comment']?></p>
-        </div> 
-    </div>
-</div<
