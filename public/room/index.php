@@ -198,6 +198,7 @@
                     <h3>Reviews</h3>
                     <div id="review-list">
                         <?php
+                        //variable names $counter and $roomReview are required because these names are used in component review.php
                             foreach ($roomReviews as $counter => $roomReview) {
                         ?>
                         <?php include "../components/review.php";?>
