@@ -230,11 +230,36 @@ body > header {
         display: flex;
         justify-content: flex-end;
     }
+
+    .bookingForm{
+        display: flex;
+        align-items: center;
+
+    }
+
+    input[type = "text"] {   
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        background: #fff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border: 1px solid #c7c7c7;
+        border-radius: 4px;
+        padding: 10px 5px;
+        margin: 10px 5px;
+
+    }
         .room-booking button,
         .room-booking span{
             border: none;
             padding:15px;
+            margin: 10px 5px;
+            min-width: fit-content;
             font-size: 16px;
+            height: 50px;
             line-height: 16px;
             font-family: 'Roboto';
             border-radius: 3px;
@@ -242,12 +267,14 @@ body > header {
             background-size: 18px;
             color: #fff;
             text-decoration: none;
+            text-align: center;
             cursor: pointer;
             transition: 0.3s;
         }
         .room-booking span{
             background: rgb(255, 38, 0);
             padding:5px;
+            height: fit-content;
         }
 
         .room-booking button:hover{
@@ -367,6 +394,13 @@ body > header {
     input[type="submit"]:hover{
         background: rgb(223, 36, 3);
     }
+
+    .room-booking button:disabled {
+        background-color: dimgrey;
+        color: linen;
+        opacity: 1;
+    }
+    
 
 body > footer {
     background: #ccc;

@@ -1,6 +1,8 @@
 <?php
     require __DIR__.'/../../boot/boot.php';
 
+    header('Access-Control-Allow-Origin: *');
+
     use Hotel\User;
     use Hotel\Room;
     use Hotel\Favorite;
@@ -57,10 +59,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="../assets/js/favorite.js"></script>
-    <script src="../assets/js/test-review.js"></script>
+    <script src="../assets/js/review.js"></script>
+    <script src="../assets/js/date_change.js"></script>
     <script src="script.js"></script>
     <title>Document</title>
 </head>
@@ -125,7 +130,7 @@
 
                 <!-- Room Image Section Start -->
                 <div class="room-image">
-                    <img src="../assets/images/rooms/room-1.jpg" alt="room-1">
+                    <img src="../assets/images/rooms/<?=$roomInfo['photo_url']?>" alt="room-1">
                 </div>
                 <!-- Room Image Section End -->
 
@@ -169,22 +174,23 @@
                     </p>
                 </div>
                 <div class="room-booking">
-                    <?php 
-                        if ($booked) {
-                    ?>
-                        <span>Already Booked</span>
-                    <?php 
-                        } else {
-                    ?>
-                        <form action="../actions/book.php" name="bookingForm"method="post">
+                        <form action="../actions/book.php" class="bookingForm" name="bookingForm" method="post">
                             <input type="hidden" name="room_id" value="<?=$roomId?>">
-                            <input type="hidden" name="check_in_date" value="<?=$checkInDate?>">
-                            <input type="hidden" name="check_out_date" value="<?=$checkOutDate?>">
-                            <button type="submit">Book Now</button>
+                            <input type="text" name="check_in_date" id="check_in_date" value="<?=$checkInDate?>">
+                            <input type="text" name="check_out_date" id="check_out_date" value="<?=$checkOutDate?>">
+                            <?php 
+                                if ($booked) {
+                            ?>
+                                <span>Already Booked</span>
+                            <?php 
+                                } else {
+                            ?>
+                            <button type="submit" <?=(!isset($userId)) ? "disabled" : "" ;?>><?=(!isset($userId)) ? "Sign in to book" : "Book Now" ;?></button>
+                            <?php
+                                }
+                            ?>
                         </form>
-                    <?php
-                        }
-                    ?>
+                    
                     
                     
                     
