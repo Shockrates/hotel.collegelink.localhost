@@ -26,6 +26,13 @@ if (empty($roomId)) {
    die;
 }
 
+//Verify csrf
+$csrf = $_POST['csrf'];
+if (empty($csrf) || !User::verifyCsrf($csrf)){
+   echo "Authentication failed";
+   die;
+}
+
 // Add review
 $review =  new Review();
 $result = $review->insertReview($roomId, User::getCurrentUserId(), $_POST['rate'], $_POST['userComment']);

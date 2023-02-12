@@ -3,20 +3,25 @@ document.addEventListener('DOMContentLoaded', function(){
     // Get the favorite form,
     const favoriteForm = document.getElementById('favoriteForm');
 
-    //Add event listener to the Favorite Form
-    favoriteForm.addEventListener('click', (event) => {
+    //Checks if Form exists, This is sto to prevent error when USer in nto logged in
+    if (favoriteForm) {
+
+        //Add event listener to the Favorite Form
+        favoriteForm.addEventListener('click', (event) => {
+
         //Prevent the event from submitting the form, no redirect or page reload
         event.preventDefault();
+        
         /**
          * If we want to use every input-value inside of the form we can call
          * `new FormData()` with the form we are submitting as an argument
          * This will create a body-object that PHP can read properly
          */
-       
         const formattedData = new FormData(favoriteForm);
 
         setFavorite(formattedData);
-    });
+    });    
+    }
 });
 
 
@@ -38,7 +43,12 @@ async function setFavorite(formattedData){
      * that JavaScript understands
      */
     const data = await response.json();
-
+     
+    if (data.hasOwnProperty('err')) {
+        console.log(data.err);
+        return;
+    }
+    
     //data return TRUE if user set room as "favorite" and false if NOT FAVORite
     if(data){
         document.getElementById('is_favorite').value = "1";

@@ -79,6 +79,7 @@
                         </li>    
                         <li>
                             <form action="actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
+                                <input type="hidden" name="csrf" value="<?=(!empty(User::getCurrentUserId()))?User::getCsrf():""?>"> 
                                 <a href="#" onclick="submit();return false;">
                                     <i class="fa-solid fa-right-to-bracket"></i>
                                     Logout 

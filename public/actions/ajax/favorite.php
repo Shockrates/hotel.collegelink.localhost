@@ -9,20 +9,28 @@ require_once __DIR__.'/../../../boot/boot.php';
 
 //Return to Home page if not a POST request
 if (strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
-    echo "This is a post script,";
+    echo json_encode(["err" => "This is a post script,"]);
     die;
 }
 
 //If there is NO logged User return to main
 if (empty(User::getCurrentUserId())) {
-   echo "No current user logged for this operation";
-   die;
+    echo json_encode(["err" => "No current user logged for this operation"]);
+    die;
 } 
 
 //Check if room_id is given
 $roomId = $_POST['room_id'];
 if (empty($roomId)) {
-   echo "No room is given for this operation";
+    echo json_encode(["err" => "No room is given for this operation"]);
+    die;
+}
+
+//Verify csrf
+$csrf = $_POST['csrf'];
+if (empty($csrf) || !User::verifyCsrf($csrf)){
+  
+   echo json_encode(["err" => "Authentication failed"]);
    die;
 }
 

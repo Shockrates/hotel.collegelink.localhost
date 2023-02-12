@@ -56,13 +56,15 @@
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="script.js"></script>
     <script src="../assets/js/search.js"></script>
+    <script src="script.js"></script>
+    
     <title>List</title>
 </head>
 <body>
-<div id="includeHtml"></div>
-
+    
+    <!--Move to top button-->
+    <button onclick="goToTop()" id="goToTopBtn" title="Go to top">Top</button>  
     <!-- SHARED NAVBAR COMPONNNT -->
     <?php include "../components/navbar.php";?>
 
@@ -87,7 +89,7 @@
                                 foreach ($countOfGuestss as $guests) {
                                     # code...
                                 ?>
-                                    <option <?=($selectedNumberOfGuests == $guests ? 'selected="selected"' : '')?> value="<?=$guests?>"><?=$guests?></option>
+                                    <option <?=($selectedNumberOfGuests == $guests ? 'selected="selected"' : '')?> value="<?=$guests?>"><?=htmlentities($guests)?></option>
                                 <?php
                                 }
                                 ?>
@@ -102,7 +104,7 @@
                                 foreach ($roomTypes as $type) {
                                     # code...
                                 ?>
-                                    <option <?=($selectedRoomType == $type['type_id'] ? 'selected="selected"' : '')?> value="<?=$type['type_id']?>"><?=$type['title']?></option>
+                                    <option <?=($selectedRoomType == $type['type_id'] ? 'selected="selected"' : '')?> value="<?=$type['type_id']?>"><?=htmlentities($type['title'])?></option>
                                 <?php
                                 }
                                 ?>
@@ -116,7 +118,7 @@
                                 foreach ($cities as $city) {
                                     # code...
                                 ?>
-                                    <option <?=($selectedCity == $city ? 'selected="selected"' : '')?> value="<?=$city?>"><?=$city?></option>
+                                    <option <?=($selectedCity == $city ? 'selected="selected"' : '')?> value="<?=$city?>"><?=htmlentities($city)?></option>
                                 <?php
                                 }
                                 ?>

@@ -9,7 +9,7 @@ use Hotel\Review;
 use Hotel\Booking;
 
 $userId = User::getCurrentUserId();
-
+//print_r($userId);die;
 //If there is NO logged User return to main
 if (empty($userId)) {
     header('Location: /');
@@ -66,7 +66,7 @@ $bookings = $booking->getBookingsByUser($userId);
                         ?>
                         <li>
                 
-                                <a href="../room?room_id=<?=$favoriteRoom['room_id']?>"><?=$favoriteRoom['name']?></a>
+                                <a href="../room?room_id=<?=$favoriteRoom['room_id']?>"><?=htmlentities($favoriteRoom['name'])?></a>
                         </li>
                         <?php 
                             }
@@ -96,7 +96,7 @@ $bookings = $booking->getBookingsByUser($userId);
                                 # code...
                         ?>
                         <li>
-                            <a href="../room?room_id=<?=$reviewedRoom['room_id']?>"><?=$reviewedRoom['name']?></a>
+                            <a href="../room?room_id=<?=$reviewedRoom['room_id']?>"><?=htmlentities($reviewedRoom['name'])?></a>
                                 <div> 
                                     <?php
                                         $roomAvgRview = $reviewedRoom['rate'];
@@ -144,9 +144,9 @@ $bookings = $booking->getBookingsByUser($userId);
                             <img src="../assets/images/rooms/<?=$bookedRoom['photo_url']?>" alt="room-<?=$bookedRoom['photo_url']?>" width="100%" height="auto">
                         </aside>
                         <div class="hotel-list__hotel__info">
-                            <h1><?=$bookedRoom['name']?></h1>
-                            <h2><?=$bookedRoom['city']?>, <?=$bookedRoom['area']?></h2>
-                            <p><?=$bookedRoom['description_short']?></p>
+                            <h1><?=htmlentities($bookedRoom['name'])?></h1>
+                            <h2><?=htmlentities($bookedRoom['city'])?>, <?=htmlentities($bookedRoom['area'])?></h2>
+                            <p><?=htmlentities($bookedRoom['description_short'])?></p>
                             <div class="button-right">
                                 <button>
                                     <a href="../room/?room_id=<?=$bookedRoom['room_id']?>">Go to room page</a>
@@ -158,17 +158,17 @@ $bookings = $booking->getBookingsByUser($userId);
                     <div class="hotel-list__hotel__info__room">
                         
                             <div class="room-price">
-                                <span>Total Cost: <?=$bookedRoom['total_price']?></span> 
+                                <span>Total Cost: <?=htmlentities($bookedRoom['total_price'])?></span> 
                             </div>
                             <div class="room-details">
                                 <div class="room-details__text">
-                                    <span>Check-in Date: <?=$bookedRoom['check_in_date']?></span>
+                                    <span>Check-in Date: <?=htmlentities($bookedRoom['check_in_date'])?></span>
                                 </div>
                                 <div class="room-details__text">
-                                    <span>Check-in Date: <?=$bookedRoom['check_out_date']?></span>
+                                    <span>Check-in Date: <?=htmlentities($bookedRoom['check_out_date'])?></span>
                                 </div>
                                 <div class="room-details__text">
-                                    <span>Type pf room: <?=$bookedRoom['room_type']?></span>
+                                    <span>Type pf room: <?=htmlentities($bookedRoom['room_type'])?></span>
                                 </div>
                             </div>
                         </div>

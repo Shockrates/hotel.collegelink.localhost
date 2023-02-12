@@ -20,6 +20,13 @@ if (empty(User::getCurrentUserId())){
     die;
 }
 
+//Verify csrf
+$csrf = $_POST['csrf'];
+if (empty($csrf) || !User::verifyCsrf($csrf)){
+    header('Location: /');
+    return;
+}
+
 setcookie('user_token', $token, time() - 3600, '/');
 //Return to HOME page
 header('Location: /');

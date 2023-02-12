@@ -3,7 +3,6 @@ $(document).on('submit', '#reviewForm', (e) => {
     e.preventDefault();
     //Get form data
     const serializedData = $('#reviewForm').serialize();
-    console.log(serializedData);
     //Ajax request
     $.ajax(
         'http://hotel.collegelink.localhost/actions/ajax/review.php',

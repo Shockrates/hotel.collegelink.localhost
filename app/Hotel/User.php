@@ -82,11 +82,12 @@ class User extends BaseService
     }
 
     //Generrate TOken function, maybe make another class for it?
-    public function generateToken($userId)
+    public function generateToken($userId, $csrf = '')
     {
         // Create token payload
         $payload = [
             'user_id' => $userId,
+            'csrf' => $csrf ?: md5(time()),
         ];
         $payloadEncoded = base64_encode(json_encode($payload));
         $signature = hash_hmac('sha256', $payloadEncoded, self::TOKEN_KEY);
@@ -94,7 +95,7 @@ class User extends BaseService
         return sprintf('%s.%s', $payloadEncoded, $signature);
     }
 
-    function getTokenPayload($token)
+    public static function getTokenPayload($token)
     {
         // Get payload and signature
         [$payloadEncoded] = explode('.', $token);
@@ -104,16 +105,32 @@ class User extends BaseService
     }
     
     //Verify TOken function, maybe make another class for it?
-    function verifyToken($token)
+    public function verifyToken($token)
     {
         // Get payload
         $payload = $this->getTokenPayload($token);
         $userId = $payload['user_id'];
+        $csrf = $payload['csrf'];
 
         // Generate signature and verify
-        return $this->generateToken($userId) == $token;
+        return $this->generateToken($userId, $csrf) == $token;
     }
 
+    public static function verifyCsrf($csrf)
+    {
+    
+        return self::getCsrf() == $csrf;
+    }
+
+    public static function getCsrf()
+    {
+        $token = $_COOKIE['user_token'];
+        // Get payload
+        $payload = self::getTokenPayload($token);
+        
+        return $payload['csrf'];
+
+    }
     public static function setCurrentUserId($userId)
     {
        self::$curentUserId = $userId;

@@ -30,13 +30,15 @@
     }
 
     //Check for booking dates
-    $checkInDate =isset($_REQUEST['check_in_date']) ? $_REQUEST['check_in_date'] : ''; 
-    $checkOutDate =isset($_REQUEST['check_out_date']) ? $_REQUEST['check_out_date'] : ''; 
-    $booked = empty($checkInDate) || empty($checkOutDate); 
+    $checkInDate =isset($_REQUEST['check_in_date']) ? $_REQUEST['check_in_date'] : date('d-m-Y'); 
+    $checkOutDate =isset($_REQUEST['check_out_date']) ? $_REQUEST['check_out_date'] : date('d-m-Y',strtotime('+ 5 days')); 
+    $booked = empty($checkInDate) || empty($checkOutDate);
+    
     if (!$booked) {
         //Check bookings
         $booking = new Booking();
         $booked = $booking->isBooked($roomId, $checkInDate, $checkOutDate);
+       
         // var_dump($booked);die;
     }
 
@@ -49,6 +51,7 @@
     //Load all room reviews
     $roomReviews = $review->getReviewsByRoom($roomId);
     
+
 
 ?>
 
@@ -65,12 +68,13 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="../assets/js/favorite.js"></script>
     <script src="../assets/js/review.js"></script>
-    <script src="../assets/js/date_change.js"></script>
+    <script src="../assets/js/booking_date_change.js"></script>
     <script src="script.js"></script>
     <title>Document</title>
 </head>
 <body>
 <div id="includeHtml"></div>
+<!--Move to top button-->
 <button onclick="goToTop()" id="goToTopBtn" title="Go to top">Top</button>  
 <?php include "../components/navbar.php";?>
 
@@ -82,7 +86,7 @@
                 <div class="room-details">
                     <div class="room-details-left">
                         <div class="room-hotel-info">
-                            <?=sprintf('%s  ~  %s, %s ', $roomInfo['name'], $roomInfo['city'], $roomInfo['area'])?>
+                            <?=htmlentities(sprintf('%s  ~  %s, %s ', $roomInfo['name'], $roomInfo['city'], $roomInfo['area']))?>
                         </div>
                         <div class="rating-reviews">
                             <span>Reviews:</span>
@@ -106,13 +110,14 @@
                         </div>
                         <?php 
                             //Check for existing logged user
-                            if (!empty(User::getCurrentUserId())){
+                            if (!empty($userId)){
                           
                         ?>
                         <div class="favorites">
                             <form class="favoriteForm" name="favoriteForm" id="favoriteForm" method="post">
                                 <input type="hidden" name="room_id" value="<?=$roomId?>">
                                 <input type="hidden" name="is_favorite" id="is_favorite" value="<?=($isFavorite) ? '1' : '0';?>">
+                                <input type="hidden" name="csrf" value="<?=(!empty($userId))?User::getCsrf():""?>"> 
                                 <i class="fa fa-heart <?=($isFavorite) ? 'is-favorite' : '';?>" id="favorite"></i>
                             </form>                           
                         </div>
@@ -137,16 +142,16 @@
                 <!--More Room Details Section Start-->
                 <div class="room-details">
                     <div class="room-data">
-                        <i class="fi fi-ss-users-alt"> <?=$roomInfo['count_of_guests']?></i>
+                        <i class="fi fi-ss-users-alt"> <?=htmlentities($roomInfo['count_of_guests'])?></i>
                         <p>COUNT OF GUESTS</p>
                     </div>
                     <div class="room-data">
                    
-                        <i class="fi fi-ss-bed"> <?=$roomInfo['room_id']?></i>
+                        <i class="fi fi-ss-bed"> <?=htmlentities($roomInfo['room_id'])?></i>
                         <p>TYPE OF ROOM</p>
                      </div>
                      <div class="room-data">
-                        <i class="fi fi-ss-garage-car"><?=$roomInfo['parking']?></i>
+                        <i class="fi fi-ss-garage-car"><?=htmlentities($roomInfo['parking'])?></i>
                         <p>PARKING</p>
                      </div>
                      <div class="room-data">
@@ -170,22 +175,28 @@
                 <div class="room-description border-left">
                     <h3>Room Description</h3>
                     <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        <?=htmlentities($roomInfo['description_long'])?>
                     </p>
                 </div>
                 <div class="room-booking">
                         <form action="../actions/book.php" class="bookingForm" name="bookingForm" method="post">
-                            <input type="hidden" name="room_id" value="<?=$roomId?>">
+                            <!--Checks if User Is logged first before trying to acces CSRF token-->
+                            <input type="hidden" name="csrf" value="<?=(!empty($userId))?User::getCsrf():""?>">  
+                            <input type="hidden" name="room_id" id="room_id" value="<?=$roomId?>">
                             <input type="text" name="check_in_date" id="check_in_date" value="<?=$checkInDate?>">
                             <input type="text" name="check_out_date" id="check_out_date" value="<?=$checkOutDate?>">
+                            
+                            <span <?=(!$booked) ? "hidden" : "" ;?>>Already Booked</span>
                             <?php 
-                                if ($booked) {
-                            ?>
-                                <span>Already Booked</span>
+                             //If no Logged user, submit button will always be disabled.
+                             //If dates change submit button will become "hiden" via JS if room is not available
+                                if ($userId) {
+                            ?> 
+                            <button type="submit" <?=($booked) ? "hidden" : "" ;?>>Book Now</button>             
                             <?php 
                                 } else {
                             ?>
-                            <button type="submit" <?=(!isset($userId)) ? "disabled" : "" ;?>><?=(!isset($userId)) ? "Sign in to book" : "Book Now" ;?></button>
+                            <button disabled type="submit" <?=($booked) ? "hidden" : "" ;?>>Sign in to book</button>             
                             <?php
                                 }
                             ?>
@@ -221,7 +232,9 @@
                     <h3>Add Review</h3>
                     <br>
                     <form name="reviewForm" id="reviewForm" action="../actions/review.php" method="post">
-                        <input type="hidden" name="room_id" value="<?=$roomId?>">    
+                        <input type="hidden" name="room_id" value="<?=$roomId?>">
+                        <!--Checks if User Is logged first before trying to acces CSRF token-->
+                        <input type="hidden" name="csrf" value="<?=(!empty($userId))?User::getCsrf():""?>">        
                         <div class="star-rating">
                             <input type="radio" id="star5" name="rate" value="5" required/>
                             <label for="star5" class="my-star fa fa-star star-5" data-star="5" title="text"></label>
@@ -237,10 +250,12 @@
                         
                         <!-- <input type="number" readonly id="output" maxlength="1" size="1">  -->
                         <div class="user-comment">
-                            <textarea name="userComment"  id="userComment" cols="25" rows="5" required></textarea>
+                            <textarea <?=(!isset($userId)) ? "disabled" : "" ;?> name="userComment"  id="userComment" cols="25" rows="5" required></textarea>
                         </div>
                         <div class="action">
-                            <input name="submit" id="submitButton" type="submit" value="Submit Review">
+                            <!-- <input name="submit" id="submitButton" type="submit" value="Submit Review"> -->
+                            <input name="submit" id="submitButton" type="submit" value="<?=(!isset($userId)) ? "Sign in to leave a review" : "Submit Review" ;?>" <?=(!isset($userId)) ? "disabled" : "" ;?>>
+                             
                         </div>
 
                     </form>

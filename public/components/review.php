@@ -2,7 +2,7 @@
     <div class="user-rating">
         <p>
             <span class="review-counter"><?=$counter+1?>.</span>
-            <span><?=$roomReview['user_name']?></span>
+            <span><?=htmlentities($roomReview['user_name'])?></span>
         </p>
         <div>
             <ul class="star-reviews">
@@ -23,10 +23,10 @@
         </div>
     </div>
     <div class="time-added">
-        <p>Add time: <?=$roomReview['created_time']//echo date();?></p >
+        <p>Add time: <?=htmlentities($roomReview['created_time'])//echo date();?></p >
     </div>
     <div class="user-comment">
-        <p><?=$roomReview['comment']?></p>
+        <p><?=htmlentities($roomReview['comment'])?></p>
     </div> 
     
 </div>

@@ -21,7 +21,7 @@ body {
 #goToTopBtn {
     display: none;
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     right: 30px;
     z-index: 99;
     font-size: 18px;
@@ -252,12 +252,11 @@ body > header {
         margin: 10px 5px;
 
     }
-        .room-booking button,
-        .room-booking span{
+        .room-booking button{
             border: none;
             padding:15px;
             margin: 10px 5px;
-            min-width: fit-content;
+            min-width: 125px;
             font-size: 16px;
             height: 50px;
             line-height: 16px;
@@ -271,10 +270,17 @@ body > header {
             cursor: pointer;
             transition: 0.3s;
         }
-        .room-booking span{
+        .room-booking span {
             background: rgb(255, 38, 0);
             padding:5px;
+            margin: 10px 5px;
+            min-width: 125px;
+            color: #fff;
             height: fit-content;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .room-booking button:hover{
@@ -395,10 +401,14 @@ body > header {
         background: rgb(223, 36, 3);
     }
 
-    .room-booking button:disabled {
+    .room-booking button:disabled,
+    .action input[type="submit"]:disabled {
         background-color: dimgrey;
         color: linen;
         opacity: 1;
+        cursor:default;
+        padding: 0;
+        height: 50px;
     }
     
 

@@ -22,7 +22,17 @@ if (!empty(User::getCurrentUserId())){
 
 //Verify User
 $user = new User();
-$verified = $user->verifyUser($_REQUEST['email'], $_REQUEST['password']);
+try{
+    if(!$verified = $user->verifyUser($_REQUEST['email'], $_REQUEST['password'])){
+        header('Location: /login?error=Could not verify user');
+        return;
+    }
+} catch (InvalidArgumentException $ex){
+    header('Location: /login?error=No user exists with given mail');
+    return;
+}
+
+
 
 
 if ($verified) {
