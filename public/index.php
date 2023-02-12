@@ -27,12 +27,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="script.js"></script>
-    <script>
-        // $( function() {
-        //     $( "#checkInDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
-        //     $( "#checkOutDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
-        // } );
-    </script>
     <title>Document</title>
 </head>
 <body>
