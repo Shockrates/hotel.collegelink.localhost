@@ -8,6 +8,9 @@ use DateTime;
 
 class Booking extends BaseService
 {
+    /**
+     * Returns true if there is a booking for room roomId in given dates fromDate to toDate
+     */
     public function isBooked($roomId, $fromDate, $toDate)
     {
         //Create Parameters TABLE
@@ -24,6 +27,9 @@ class Booking extends BaseService
         return count($allRecords) > 0;
     }
 
+    /**
+     * Creates a boooking for user userID for room roomId for given dates fromDate to toDate
+     */
     public function insertBooking($roomId, $userId, $checkInDate, $checkOutDate)
     {
 
@@ -60,6 +66,7 @@ class Booking extends BaseService
         return $this->getPdo()->commit();
     }
 
+
     public function getRoomInfo($roomId)
     {
         //Create Parameters TABLE
@@ -73,6 +80,9 @@ class Booking extends BaseService
         return $room;
     }
 
+    /**
+     * Returns all bookings nmade by user
+     */
     public function getBookingsByUser($userId)
     {
         //Create Parameters TABLE

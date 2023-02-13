@@ -208,7 +208,7 @@
                 </div>
                 <!--Room Desrciption Section End-->
                 <br/>
-                <!-- <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe> -->
+                <iframe src = "https://maps.google.com/maps?q=<?=$roomInfo['location_lat']?>,<?=$roomInfo['location_long']?>&hl=es;z=14&amp;output=embed"></iframe>
                 <br/>
                 <!--Review List Section Start-->
                 <div class="room-review-list border-left" id="room-review-list">

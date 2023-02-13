@@ -7,6 +7,9 @@ use Hotel\BaseService;
 
 class Favorite extends BaseService
 {
+    /**
+     * Returns if room roomId is favorite for user userId
+     */
     public function isFavorite($roomId, $userId)
     {   
         //Create Parameters TABLE
@@ -21,7 +24,9 @@ class Favorite extends BaseService
         return  !empty($isFavorite);
 
     }
-
+    /**
+     * Sets room roomId as favorite for user userId
+     */
     public function setFavorite($roomId, $userId)
     {
           //Create Parameters TABLE
@@ -36,6 +41,9 @@ class Favorite extends BaseService
        
     }
 
+     /**
+     * Unsets room roomId as favorite for user userId
+     */
     public function unSetFavorite($roomId, $userId)
     {
            //Create Parameters TABLE
@@ -50,6 +58,10 @@ class Favorite extends BaseService
        
     }
 
+
+     /**
+     * Gets all rooms favorite by user userID
+     */
     public function getListByUser($userId)
     {
         //Create Parameters TABLE
