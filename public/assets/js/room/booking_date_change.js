@@ -2,29 +2,35 @@ $( function() {
     $( "#check_in_date" )
         .datepicker({ 
             dateFormat: 'dd-mm-yy',
-            onSelect: function(dateText){
-                logFunction("Check-In", dateText);
+            minDate: 0,
+            onSelect: (dateText) => {
+                $('#check_out_date').datepicker('option','minDate' , dateText);
+                logFunction();
             }
-		})
-        // .on("change", function() {
-        //     console.log("Got change event from field");
-        //  });
+		}).keyup(function(e) {
+            if(e.keyCode == 8 || e.keyCode == 46) {
+                $('#check_out_date').datepicker('option','minDate' ,+1);
+            }
+        });
 
          
     $( "#check_out_date" )
         .datepicker({ 
             dateFormat: 'dd-mm-yy',
-            onSelect: function(dateText) {
-                logFunction("Check-Out",dateText);
+            minDate: +1,
+            onSelect: (dateText) => {
+                $('#check_in_date').datepicker('option','maxDate' , dateText);
+                logFunction();
 		    }
-		});
-        // .on("change", function() {
-        //     console.log("Got change event from field");
-        //  });
+		}).keyup(function(e) {
+            if(e.keyCode == 8 || e.keyCode == 46) {
+                $('#check_in_date').datepicker('option','maxDate' ,"");
+            }
+        });
     
 } );
 
-logFunction = (from, date) => {
+logFunction = () => {
     checkIn = $("#check_in_date").val();
     checkOut = $("#check_out_date").val();
     roomId = $("#room_id").val();
@@ -55,7 +61,7 @@ logFunction = (from, date) => {
             }
             
             //Push state to URL
-            //history.pushState({}, '', 'http://hotel.collegelink.localhost/list_page?'+serializedData);
+            history.pushState({}, '', `http://hotel.collegelink.localhost/room.php?room_id=${roomId}&check_in_date=${checkIn}&check_out_date=${checkOut}`);
         });
 
 }

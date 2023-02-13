@@ -16,6 +16,13 @@ $(document).on('submit', '#reviewForm', (e) => {
             $('#review-list').prepend(result);
             //Changes all counters to accomonadate fro new entry
             $('.review-counter').text(i => (i+1) + '.');
+
+            //Clears the form
+            $('#reviewForm')[0].reset();
+            //deselects stars
+            $('.my-star').each(function(){
+                $(this).removeClass('is-active');
+            });
             
             
         });
