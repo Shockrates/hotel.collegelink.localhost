@@ -34,9 +34,6 @@ logFunction = () => {
     checkIn = $("#check_in_date").val();
     checkOut = $("#check_out_date").val();
     roomId = $("#room_id").val();
-    const serializedData = $('form.bookingForm').serialize();
-    //console.log(`${from} `+date);
-    //console.log(serializedData);
 
     //Ajax request
     $.ajax(

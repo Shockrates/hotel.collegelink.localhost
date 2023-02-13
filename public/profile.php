@@ -42,7 +42,10 @@ $bookings = $booking->getBookingsByUser($userId);
     <title>List</title>
 </head>
 <body>
-  
+
+    <!--Move to top button-->
+    <button onclick="goToTop()" id="goToTopBtn" title="Go to top">Top</button>  
+    
     <!-- NAvbar Section Start -->
 <header>
         <div class="container">

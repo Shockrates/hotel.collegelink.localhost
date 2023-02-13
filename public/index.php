@@ -27,7 +27,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="script.js"></script>
-    <title>Document</title>
+    <title>WDA Hotel Project</title>
 </head>
 <body>
     <header>    
@@ -103,7 +103,7 @@
                                 foreach ($cities as $city) {
                                     # code...
                                 ?>
-                                    <option value="<?=$city?>"><?=$city?></option>
+                                    <option value="<?=$city?>"><?=htmlentities($city)?></option>
                                 <?php
                                 }
                                 ?>
@@ -117,7 +117,7 @@
                                 foreach ($allTypes as $type) {
                                     # code...
                                 ?>
-                                    <option value="<?=$type['type_id']?>"><?=$type['title']?></option>
+                                    <option value="<?=$type['type_id']?>"><?=htmlentities($type['title'])?></option>
                                 <?php
                                 }
                                 ?>

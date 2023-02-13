@@ -20,8 +20,6 @@
 
     //Search for room
     $allAvailablerooms = $room->searchRoom($checkInDate, $checkOutDate, $selectedCity, $selectedRoomType,$selectedNumberOfGuests, $selectedMinPrice, $selectedMaxPrice);
-    // print_r($allAvailablerooms);die;
-
    
 ?>
 
