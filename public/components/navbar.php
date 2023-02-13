@@ -11,7 +11,7 @@ use Hotel\User;
                 </div>
                 <ul class="main-navigation">           
                     <li class="main-navigation__home">
-                        <a href="../index.php">
+                        <a href="index.php">
                             <i class="fas fa-home"></i>
                             Home
                         </a>  
@@ -22,13 +22,13 @@ use Hotel\User;
                           
                         ?>
                         <li>
-                            <a href="../register">
+                            <a href="register.php">
                                 <i class="fa-solid fa-user-plus"></i>
                                 Register 
                             </a>  
                         </li> 
                         <li>
-                            <a href="../login">
+                            <a href="login.php">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 Login 
                             </a>  
@@ -37,13 +37,13 @@ use Hotel\User;
                             } else {
                         ?>
                          <li>
-                            <a href="../profile">
+                            <a href="profile.php">
                                 <i class="fa-solid fa-user"></i>
                                 Profile
                             </a>  
                         </li>    
                         <li>
-                            <form action="../actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
+                            <form action="actions/logout.php" method="post" name="logoutForm" id="logoutForm" >
                                 <input type="hidden" name="csrf" value="<?=(!empty(User::getCurrentUserId()))?User::getCsrf():""?>"> 
                                 <a href="#" onclick="submit();return false;">
                                     <i class="fa-solid fa-right-to-bracket"></i>

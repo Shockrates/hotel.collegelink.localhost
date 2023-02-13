@@ -112,7 +112,7 @@ body > main {
     margin: 61px 0 0 0;
     flex: 1 0 auto;
 
-    background: url("../assets/images/michelangelo-hotels-2.jpg") ;
+    background: url("../images/michelangelo-hotels-2.jpg") ;
     /* Full height */
     /* height: 100%;  */
     /* Center and scale the image nicely */
@@ -120,7 +120,7 @@ body > main {
     background-repeat: no-repeat;
     background-size: cover;
     padding: 155px 0 300px 0; 
-    /* animation: 0.5s ease-out 0s 1 fadeIn; */
+    animation: 0.5s ease-out 0s 1 fadeIn;
 }
    
 
@@ -133,7 +133,7 @@ body > main {
         padding: 10px 20px;
         border-radius: 12px;
         transition: 0.3s;
-        /* animation: 1s ease-out 0s 1 slideInDown; */
+        animation: 1s ease-out 0s 1 slideInDown;
     }
 
     section.hero form fieldset {

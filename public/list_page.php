@@ -1,5 +1,5 @@
 <?php
-    require __DIR__.'/../../boot/boot.php';
+    require __DIR__.'/../boot/boot.php';
     
     use Hotel\User;
     use Hotel\Room;
@@ -26,16 +26,16 @@
     
 
     //Get page Parameters
-    $selectedCity = $_REQUEST['city'];
-    $selectedRoomType = $_REQUEST['roomType'];
-    // If statement is added  to avoid warnings when requests does not contains guest, min price and max price fields
+    //If parameter is not passed variable is set to empty string to avoid warnings
+    $selectedCity = isset($_REQUEST['city']) ? $_REQUEST['city'] : '';
+    $selectedRoomType = isset($_REQUEST['roomType']) ? $_REQUEST['roomType'] : '';
     $selectedNumberOfGuests =isset($_REQUEST['guests']) ? $_REQUEST['guests'] : ''; 
     $selectedMinPrice = isset($_REQUEST['minPrice']) ? $_REQUEST['minPrice'] : ''; 
     $selectedMaxPrice = isset($_REQUEST['maxPrice']) ? $_REQUEST['maxPrice'] : '';
    
-
-    $checkInDate = $_REQUEST['checkInDate'];
-    $checkOutDate = $_REQUEST['checkOutDate'];
+    //If no checkin or/and checkout dates are passed dates are set to current date and current date + 2 days.
+    $checkInDate =isset($_REQUEST['check_in_date']) ? $_REQUEST['check_in_date'] : date('d-m-Y'); 
+    $checkOutDate =isset($_REQUEST['check_out_date']) ? $_REQUEST['check_out_date'] : date('d-m-Y',strtotime('+ 2 days')); 
     
 
     //Search for room
@@ -51,13 +51,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/list_page.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="../assets/js/search.js"></script>
-    <script src="script.js"></script>
+    <script src="assets/js/list_page.js"></script>
     
     <title>List</title>
 </head>
@@ -66,7 +65,7 @@
     <!--Move to top button-->
     <button onclick="goToTop()" id="goToTopBtn" title="Go to top">Top</button>  
     <!-- SHARED NAVBAR COMPONNNT -->
-    <?php include "../components/navbar.php";?>
+    <?php include "components/navbar.php";?>
 
     <main>
         <div class="container">
@@ -78,7 +77,7 @@
                     </p>
                    
                 </header>
-                <form name="searchForm" id="searchForm" method="get" action="index.php">
+                <form name="searchForm" id="searchForm" method="get" action="list_page.php">
                     <div class="room-search">
                         
                         <div class="form-group">
@@ -148,10 +147,10 @@
                     </div>
                     <div class="date-search">
                         <div class="form-group">
-                            <input type="text" id="checkIn" name="checkInDate" placeholder="Check-In Date" value=<?=$checkInDate?>>
+                            <input type="text" id="check_in_date" name="check_in_date" placeholder="Check-In Date" value="<?=$checkInDate?>" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="checkOut" name="checkOutDate" placeholder="Check-Out Date" value=<?=$checkOutDate?>>
+                            <input type="text" id="check_out_date" name="check_out_date" placeholder="Check-Out Date" value="<?=$checkOutDate?>" required>
                         </div>
                     </div>
                     

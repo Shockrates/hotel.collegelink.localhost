@@ -21,7 +21,6 @@ $(document).on('submit', '#searchForm', (e) => {
     
 });
 
-// A $( document ).ready() block.
 $(document).ready(() => {
     
     var urlParams = window.location.href.slice(window.location.href.indexOf('?') + 1);

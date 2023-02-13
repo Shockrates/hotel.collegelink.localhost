@@ -3,15 +3,12 @@
 
     use Hotel\User;
 
-    //Check for existing logged user
+    //Cehck for existing logged user
     if (!empty(User::getCurrentUserId())){
         //Return to HOME page
         header('Location: /');
         die;
     }
-
-    $invalidMessage = (isset($_COOKIE['invalid_credentials']) && $_COOKIE['invalid_credentials']) ? "Please give a valid email and password" : "" ;
-    var_dump($invalidMessage);
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +17,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/register.css">
     <script src="https://kit.fontawesome.com/c8c9f21169.js" crossorigin="anonymous"></script>
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
     <header>
@@ -40,9 +37,9 @@
                         
                     </li>
                     <li>
-                        <a href="../register">
-                            <i class="fa-solid fa-user-plus"></i>
-                            Register 
+                        <a href="../login">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Login 
                         </a>  
                     </li> 
                 </ul>
@@ -51,23 +48,26 @@
     </header>
     <main class="main-content">
         <section class="hero">
-            <form method="post" action="../actions/login.php">
+            <form method="post" action="../actions/register.php">
               
 
-                <fieldset id="formLogIn">  
-                    <div class="">
-                        <p><?=$invalidMessage?></p>
+                <fieldset id="formRegister">
+                    <div class="form-group"> 
+                        <input type="text" id="username" name="username" placeholder="Name" required>
                     </div>
                     <div class="form-group">
                         <input type="email" id="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group"> 
-                        <input type="password" id="password" name="password" placeholder="Password" required> 
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group"> 
+                        <input type="password" id="rePassword" name="rePassword" placeholder="Repeat Password" required>
                     </div>
                 </fieldset>
               
                     <div class="action">
-                        <input name="login" id="loginButton" type="submit" value="Login">
+                        <input name="register" id="registerButton" type="submit" value="Register">
                     </div>
                 
                 

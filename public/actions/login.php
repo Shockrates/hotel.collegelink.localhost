@@ -24,11 +24,11 @@ if (!empty(User::getCurrentUserId())){
 $user = new User();
 try{
     if(!$verified = $user->verifyUser($_REQUEST['email'], $_REQUEST['password'])){
-        header('Location: /login?error=Could not verify user');
+        header('Location: /login.php?error=Could not verify user');
         return;
     }
 } catch (InvalidArgumentException $ex){
-    header('Location: /login?error=No user exists with given mail');
+    header('Location: /login.php?error=No user exists with given mail');
     return;
 }
 
@@ -51,7 +51,7 @@ if ($verified) {
     //Set invalid message cookie to browser
     setcookie('invalid_credentials', true, time() + (3), '/');
     //Return to Login with a validaif credentials 
-    header('Location: /login');
+    header('Location: /login.php');
 }
 
 

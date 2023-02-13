@@ -18,7 +18,7 @@ if (empty($roomId)) {
     return;
 }
 
-$url = sprintf('/room/?room_id=%s&check_in_date=%s&check_out_date=%s',$roomId, $checkInDate, $checkOutDate);
+$url = sprintf('/room.php?room_id=%s&check_in_date=%s&check_out_date=%s',$roomId, $checkInDate, $checkOutDate);
 
 //Return to Home page if not a POST request
 if (strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
@@ -51,10 +51,10 @@ $booking = new Booking();
 $booked = $booking->isBooked($roomId, $checkInDate, $checkOutDate);
 if ($booked) {
     http_response_code(404);
-    header(sprintf('Location: /room/?room_id=%s&check_in_date=%s&check_out_date=%s', $roomId, $checkInDate, $checkOutDate));
+    header(sprintf('Location: /room.php?room_id=%s&check_in_date=%s&check_out_date=%s', $roomId, $checkInDate, $checkOutDate));
     return;
 } 
 
 $booking->insertBooking($roomId, User::getCurrentUserId(), $checkInDate, $checkOutDate);
 
-header(sprintf('Location: /room/?room_id=%s&check_in_date=%s&check_out_date=%s', $roomId, $checkInDate, $checkOutDate));
+header(sprintf('Location: /room.php?room_id=%s&check_in_date=%s&check_out_date=%s', $roomId, $checkInDate, $checkOutDate));

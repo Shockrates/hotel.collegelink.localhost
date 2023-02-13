@@ -7,16 +7,16 @@
     $room = new Room();
     
     //Get page Parameters
-    $selectedCity = $_REQUEST['city'];
-    $selectedRoomType = $_REQUEST['roomType'];
-    // If statement is added  to avoid warnings when requests does not contains guest, min price and max price fields
-    $selectedNumberOfGuests =isset($_REQUEST['guests']) ? $_REQUEST['guests'] : ''; 
+    //If parameter is not passed variable is set to empty string to avoid warnings
+    $selectedCity = isset($_REQUEST['city']) ? $_REQUEST['city'] : '';
+    $selectedRoomType = isset($_REQUEST['roomType']) ? $_REQUEST['roomType'] : '';
+    $selectedNumberOfGuests = isset($_REQUEST['guests']) ? $_REQUEST['guests'] : ''; 
     $selectedMinPrice = isset($_REQUEST['minPrice']) ? $_REQUEST['minPrice'] : ''; 
     $selectedMaxPrice = isset($_REQUEST['maxPrice']) ? $_REQUEST['maxPrice'] : '';
    
-    $checkInDate = $_REQUEST['checkInDate'];
-    $checkOutDate = $_REQUEST['checkOutDate'];
-    
+    //If no checkin or/and checkout dates are passed dates are set to current date and current date + 2 days.
+    $checkInDate =isset($_REQUEST['check_in_date']) ? $_REQUEST['check_in_date'] : date('d-m-Y'); 
+    $checkOutDate =isset($_REQUEST['check_out_date']) ? $_REQUEST['check_out_date'] : date('d-m-Y',strtotime('+ 2 days')); 
 
     //Search for room
     $allAvailablerooms = $room->searchRoom($checkInDate, $checkOutDate, $selectedCity, $selectedRoomType,$selectedNumberOfGuests, $selectedMinPrice, $selectedMaxPrice);
@@ -38,7 +38,7 @@
         <div class="hotel-list__hotel">
         
             <aside class="hotel-list__hotel__media">
-                <img src="../assets/images/rooms/<?=$availableroom['photo_url']?>" alt="room-1" width="100%" height="auto">
+                <img src="assets/images/rooms/<?=$availableroom['photo_url']?>" alt="room-1" width="100%" height="auto">
             </aside>
             <div class="hotel-list__hotel__info">
                 <h1><?=htmlentities($availableroom['name'])?></h1>
@@ -47,7 +47,7 @@
                 <p><?=htmlentities($availableroom['description_short'])?></p>
                 <div class="button-right">
                     <button>
-                        <a href="../room/?room_id=<?=$availableroom['room_id']?>&check_in_date=<?=$checkInDate?>&check_out_date=<?=$checkOutDate?>">Go to room page</a>
+                        <a href="room.php?room_id=<?=$availableroom['room_id']?>&check_in_date=<?=$checkInDate?>&check_out_date=<?=$checkOutDate?>">Go to room page</a>
                     </button>
                 </div>
             </div> 

@@ -22,9 +22,6 @@ if (isset($_COOKIE['user_token'])) {
 			// Set user in memory
 			$userInfo = $user->getTokenPayload($userToken);
 			User::setCurrentUserId($userInfo['user_id']);
-			//var_dump(User::getCurrentUserId());
-			//print_r($userInfo);
-			//die;
 		}
 	}
 }

@@ -19,7 +19,7 @@ async function addReview(formattedData){
      * so we must specify that property too. We use the earlier created 
      * FormData()-object and just pass it along.
      */
-    const response = await fetch('../actions/ajax/review.php',{
+    const response = await fetch('../../actions/ajax/review.php',{
         method: 'POST',
         body: formattedData
     });

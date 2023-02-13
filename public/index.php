@@ -51,13 +51,13 @@
                           
                         ?>
                         <li>
-                            <a href="register">
+                            <a href="register.php">
                                 <i class="fa-solid fa-user-plus"></i>
                                 Register 
                             </a>  
                         </li> 
                         <li>
-                            <a href="login">
+                            <a href="login.php">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 Login 
                             </a>  
@@ -66,7 +66,7 @@
                             } else {
                         ?>
                          <li>
-                            <a href="profile">
+                            <a href="profile.php">
                                 <i class="fa-solid fa-user"></i>
                                 Profile
                             </a>  
@@ -93,7 +93,7 @@
     <main>
         <div class="flex-container">
             <section class="main-content">
-                <form method="get" action="list_page">
+                <form method="get" action="list_page.php">
                     <fieldset id="room-details">
                         <div class="form-group">
                            
@@ -128,10 +128,10 @@
                     <fieldset id="formSearch">
                         <div class="form-group">
                            
-                            <input type="text" id="checkInDate" name="checkInDate" placeholder="Check-In Date" required>
+                            <input type="text" id="check_in_date" name="check_in_date" placeholder="Check-In Date" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="checkOutDate" name="checkOutDate" placeholder="Check-Out Date" required>
+                            <input type="text" id="check_out_date" name="check_out_date" placeholder="Check-Out Date" required>
                         </div>
                     </fieldset>
                    
