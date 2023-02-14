@@ -48,7 +48,13 @@ $counter = 0;
 
 //Create a $roomReview variable containign the newly insert review data 
 //Variable must use the name $roomReview in order to be used by review.php component
-$roomReview = $review->getLastRoomReview($roomId);
+//$roomReview = $review->getLastRoomReview($roomId);
+$roomReview =[
+   'user_name' => User::getCurrentUserId(),
+   'rate' => $_POST['rate'],
+   'comment' => $_POST['userComment'],
+   'created_time' => date()
+];
 
 include "../../components/review.php";
 ?>
