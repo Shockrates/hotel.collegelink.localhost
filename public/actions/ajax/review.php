@@ -50,10 +50,10 @@ $counter = 0;
 //Variable must use the name $roomReview in order to be used by review.php component
 //$roomReview = $review->getLastRoomReview($roomId);
 $roomReview =[
-   'user_name' => User::getCurrentUserId(),
+   'user_name' => $userData['name'],
    'rate' => $_POST['rate'],
    'comment' => $_POST['userComment'],
-   'created_time' => date()
+   'created_time' => date("Y-m-d H-i-s")
 ];
 
 include "../../components/review.php";
